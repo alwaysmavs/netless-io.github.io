@@ -1,0 +1,115 @@
+---
+layout:     post
+title:      "产品设计师常用网站"
+subtitle:   "作为产品设计人员，不懂设计就是创造灾难"
+date:       2016-06-06 12:00:00
+author:     "beings"
+header-img: "http://7xragq.com1.z0.glb.clouddn.com/2016-04-06-designer.jpeg"
+header-mask: 0.3
+catalog:    true
+tags:
+    - 产品经理
+    - 设计
+---
+
+
+
+成长是从积累到涌现的过程。好的产品设计师首先要有好的素材积累，才能涌现出动人的作品。下面是我整理出来的常用的网站。希望给大家带来帮助。（打不开请挂代理）
+
+### 寻找灵感类的
+优秀的艺术家靠的是借鉴，但伟大的艺术家靠的是‘窃取’。所谓站在巨人的肩膀之上才能累计人类文明。所以对于刚刚入门的产品设计师而言不要羞于借鉴。你需要做到的是提高审美，不要借鉴烂作品。
+
+[https://dribbble.com/](https://dribbble.com/)
+
+[https://www.behance.net/](https://www.behance.net/)
+
+[http://www.siiimple.com/](http://www.siiimple.com/)
+
+[http://reeoo.com/](http://reeoo.com/)
+
+[http://www.calltoidea.com/](http://www.calltoidea.com/)
+
+[http://www.ui.cn/](http://www.ui.cn/)
+
+[http://www.zcool.com.cn/](http://www.zcool.com.cn/)
+
+[http://www.uisdc.com/](http://www.uisdc.com/)
+
+[http://designmodo.com/](http://designmodo.com/)
+
+[https://www.google.com/design/spec/material-design/introduction.html](https://www.google.com/design/spec/material-design/introduction.html)
+（material design 设计法则）
+
+### 素材收集
+APP 只是一个容器。真正决定产品调性的是往容器里面填充的内容，而图片就是这些内容的基础之一。所以无论是样图还是海报都需要大量优秀的图片（忽悠甲方也是主要原因），下面这些网站能给你提供大量优秀的图片素材。
+
+[https://500px.com/](https://500px.com/)
+
+[https://www.pinterest.com/](https://www.pinterest.com/)
+
+[http://huaban.com/](http://huaban.com/)
+            
+[https://unsplash.com/](https://unsplash.com/)
+
+### 配色类
+配色是一门很深的学问，他能左右你的感情引导你的欲望。下面这这些网站会给你带来诸多配色的灵感，但是真正要深入学习请自己买书自己体会。
+
+[http://colorhunt.co/](http://colorhunt.co/)	（配色方案集合）
+
+[http://www.yiihuu.com/](http://www.yiihuu.com/) （配色已经软件教程）
+
+### 简单代码入门
+产品设计师本身不是简单的负责绘图交于开发实现，他们还肩负着产品经理的工作——和开发沟通。所以必要的时候可以学点代码，以方便和开发小伙伴一起快乐的玩耍啦。（本人就是在这几个网站中学习了 html css js vue react 等技术的，讲真代码很有意思）
+
+[http://www.imooc.com/](http://www.imooc.com/)
+
+[http://www.w3school.com.cn/](http://www.w3school.com.cn/)
+
+[https://github.com/](https://github.com/)
+
+### 新闻资讯
+除了很多出色的微信公众号以外，medium 是个很好的信息入口。很多国外优秀前沿的设计理念都可以在 medium 上发掘。而且 medium 本身也是给极其优秀的产品，简直干净到令人窒息。
+
+[https://www.designernews.co/](https://www.designernews.co/)
+
+[https://medium.com/](https://medium.com/)
+
+### 软件工具
+这里我主要推荐 sketch 的教程，Adobe 一家的软件教程满地都是我不再赘述。还有几款交互软件感觉也不是特别值得一学这里就不推荐了。
+
+[http://www.sketchcn.com/](http://www.sketchcn.com/) （软件技能）
+
+### 字体icon
+对于 web 端的产品设计而言，你的 icon 做成 webfont 交付开发会让人觉得你特别专业。 
+
+[http://www.iconfont.cn/](http://www.iconfont.cn/) （icon收集搜索）
+
+[http://www.youziku.com/](http://www.youziku.com/) （在线字体制作）
+
+[http://sketchrepo.com/](http://sketchrepo.com/) （sketch 素材网站）
+
+[https://design.google.com/icons/](https://design.google.com/icons/)  （谷歌的）
+
+### Web UIKIT
+无论设计 APP 还是 web,在动手设计画面之前最重要的是定下设计法则和 UIKIT。一套合理的设计法则可以让你产品具有秩序之美，也能大大见底 UI 的维护成本和开发成本。最后说一句，像成为大师就去享受制定规则的过程吧。
+
+[http://www.getuikit.net/](http://www.getuikit.net/) （UIKIT可用于H5和web）
+
+[http://www.bootcss.com/](http://www.bootcss.com/) (bootstrap 中文资料网站)
+
+[http://materializecss.com/](http://materializecss.com/)（material design uikit）
+
+### 新产品发布网站
+
+对新鲜事物保持足够的好奇心是一个优秀的产品设计师的立足点。通过你的设计的作品向世界表达你的善意以及对生活的态度。 所以请不要错过任何一个新产品。
+
+[http://next.36kr.com/posts/](http://next.36kr.com/posts/)
+
+### PNG 无损压缩
+如果你体会过 IOS 开发的过程你会发现：决定一款软件大小的因素主要是 native 的图片资源；一个是 Pod 进去的库。而代码本身更像是胶水。库我们很难决定用不用（毕竟不开发）但是我们可以让本地的图片压缩到更小。
+
+[https://tinypng.com/](https://tinypng.com/)（用于轻量化软件）
+
+### 最后
+上面提供的一切只是方便大家在成长的过程中完成积累，而真的有一天你要打通任督二脉完成涌现和创新则需要更高维度的思考：如何给人类创造美丽的东西。还有职业只是你谋生的选择，它本身并不决定你学习的路线。
+

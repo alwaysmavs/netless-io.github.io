@@ -74,14 +74,6 @@
                     </li>
                     
                     <li>
-                        <a href="/about/">About</a>
-                    </li>
-                    
-                    <li>
-                        <a href="/portfolio/">Portfolio</a>
-                    </li>
-                    
-                    <li>
                         <a href="/tags/">Tags</a>
                     </li>
                     
@@ -251,11 +243,14 @@
 
 
                 <hr>
-
-                
-
-
                 <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2014/09/04/short-video/" data-toggle="tooltip" data-placement="top" title="「知乎」对中国用户而言，Pure Android 是否比 MIUI 或 Flyme 体验更好？">
+                        Previous<br>
+                        <span>「知乎」对中国用户而言，Pure Android 是否比 MIUI 或 Flyme 体验更好？</span>
+                        </a>
+                    </li>
                     
                     
                     <li class="next">
@@ -266,9 +261,6 @@
                     </li>
                     
                 </ul>
-
-
-                
 
                 
 
@@ -303,6 +295,12 @@
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+        				
+                            
+        				
+                            
+        				
+                            
         				
                             
                 				<a href="/tags/#产品经理" title="产品经理" rel="3">
@@ -344,10 +342,6 @@
         				
                             
         				
-                            
-        				
-                            
-        				
         			</div>
                 </section>
                 
@@ -372,8 +366,6 @@
     })
     gitment.render('container')
 </script>
-
-
 
 
 
@@ -516,7 +508,7 @@
 
 <!--fastClick.js -->
 <script>
-    async("https://ohuuyffq2.qnssl.com/fastclick.min.js", function(){
+    async("../js/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })

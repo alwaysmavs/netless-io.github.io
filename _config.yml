@@ -1,7 +1,7 @@
 # Site settings
 title: Netless
 SEOTitle: Netless Blog
-header-img: https://ohuuyffq2.qnssl.com/bg_homepage.jpg
+header-img: ./img/book.jpg
 email: rick@netless.link
 description: "关于产品、前端和摄影 | 伍双，产品经理，熟悉音视频以及直播领域相关知识 | 这里是伍双的个人博客，一起改善孤独，创造善意的产品。"
 keyword: "伍双, beings, 产品经理, 七牛, 七牛直播云, pili, Beings Blog, 博客, 个人网站, 互联网, 前端, 设计, 产品,React,React Native, 全栈，摄影爱好者"
@@ -33,7 +33,7 @@ anchorjs: true                          # if you want to customize anchor. check
 
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 
 

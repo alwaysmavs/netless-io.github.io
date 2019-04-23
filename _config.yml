@@ -1,11 +1,11 @@
 # Site settings
-title: Beings
-SEOTitle: 伍双 | Beings Blog
+title: Netless
+SEOTitle: Netless Blog
 header-img: https://ohuuyffq2.qnssl.com/bg_homepage.jpg
-email: beingswu@gmail.com
+email: rick@netless.link
 description: "关于产品、前端和摄影 | 伍双，产品经理，熟悉音视频以及直播领域相关知识 | 这里是伍双的个人博客，一起改善孤独，创造善意的产品。"
 keyword: "伍双, beings, 产品经理, 七牛, 七牛直播云, pili, Beings Blog, 博客, 个人网站, 互联网, 前端, 设计, 产品,React,React Native, 全栈，摄影爱好者"
-url: "http://beings.me"              # your host, for absolute URL
+url: "https://blog.netless.link"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
 
@@ -13,10 +13,10 @@ baseurl: ""                             # for example, '/blog' if your blog host
 # SNS settings
 RSS: false
 # weibo_username:     伍双
-zhihu_username:     wushuang-beings
+# zhihu_username:     wushuang-beings
 github_username:    alwaysmavs
-#twitter_username:  huxpro
-facebook_username:  mangascript
+# twitter_username:  huxpro
+# facebook_username:  mangascript
 # linkedin_username:  firstname-lastname-idxxxx
 
 
@@ -70,7 +70,7 @@ ba_track_id: 86b26e1ada60e26f19067e1f031503a3
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "学习与分享"
-sidebar-avatar: https://ohuuyffq2.qnssl.com/head.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: ./img/logo.png      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
@@ -81,9 +81,9 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 
 
 # Friends
-friends: [
-    {
-        title: "cellier",
-        href: "http://cellier.me/"
-    }
-]
+#friends: [
+#    {
+#        title: "cellier",
+#        href: "http://cellier.me/"
+#    }
+#]

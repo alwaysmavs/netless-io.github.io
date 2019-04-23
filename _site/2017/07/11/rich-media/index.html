@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="关于产品、前端和摄影 | 伍双，产品经理，熟悉音视频以及直播领域相关知识 | 这里是伍双的个人博客，一起改善孤独，创造善意的产品。">
+    <meta name="keywords"  content="伍双, beings, 产品经理, 七牛, 七牛直播云, pili, Beings Blog, 博客, 个人网站, 互联网, 前端, 设计, 产品,React,React Native, 全栈，摄影爱好者">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>媒体的演变 - Netless Blog</title>
+
+    <link rel="canonical" href="http://localhost:4000/2017/07/11/rich-media/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Netless</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/portfolio/">Portfolio</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/https://ohuuyffq2.qnssl.com/ar-head.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        /*background-image: url('/https://ohuuyffq2.qnssl.com/ar-head.jpg')*/
+          background-image: url('https://ohuuyffq2.qnssl.com/ar-head.jpg')
+    }
+
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.4);
+    }
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#流媒体" title="流媒体">流媒体</a>
+                        
+                        <a class="tag" href="/tags/#行业" title="行业">行业</a>
+                        
+                    </div>
+                    <h1>媒体的演变</h1>
+                    
+                    
+                    <h2 class="subheading">后直播时代，谁将成为互动娱乐产业升级新动力</h2>
+                    
+                    <span class="meta">Posted by beings on July 11, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h2 id="媒介的演变我从哪里来会到哪里去">媒介的演变：我从哪里来，会到哪里去</h2>
+
+<ul>
+  <li>富媒体的升级</li>
+  <li>网络基础设施的提升</li>
+  <li>终端性能的提升</li>
+  <li>收入增加和资费下降</li>
+  <li>用户习惯的培养</li>
+</ul>
+
+<h2 id="什么是音视频">什么是音视频</h2>
+
+<ul>
+  <li>原始的电影制作：动画是指由许多帧静止的画面，以一定的速度（如每秒16张）连续播放时，肉眼因视觉残象产生错觉，而误以为画面活动的作品。</li>
+  <li>采集、处理、编码、封包、传输</li>
+  <li>音频：以一定的采样频率采集音频。</li>
+</ul>
+
+<h2 id="直播是什么">直播是什么</h2>
+
+<h3 id="行业背景">行业背景</h3>
+
+<ul>
+  <li>ip 网络直播的兴起不是什么创新，就是技术和基础建设发展到一定程度的结果：中国网络基础设施的进一步完善，手机性能好到能够推流。</li>
+  <li>娱乐类直播的核心商业逻辑还是一样：通过直播改变部分人的娱乐方式，然后获取这部分人的注意力，最后把这些注意力转化为购买力。</li>
+  <li>直播更像是给媒体人的礼物，就像脱口秀节目的兴起，对假唱的厌恶。有些时候人喜欢看到更自然而不完美的节目。</li>
+</ul>
+
+<h3 id="技术特征">技术特征</h3>
+
+<ul>
+  <li>
+    <p>架构思想</p>
+  </li>
+  <li>功能模块
+    <ul>
+      <li>客户端
+        <ul>
+          <li>推流端：采集=》处理=》编码=》封包=》推流</li>
+          <li>播放端：拉取=》解码=》处理=》播放</li>
+        </ul>
+      </li>
+      <li>线路
+        <ul>
+          <li>网状去中心化结构</li>
+          <li>线路稳定</li>
+          <li>智能调度</li>
+        </ul>
+      </li>
+      <li>配套数据处理
+        <ul>
+          <li>鉴黄</li>
+          <li>实时转码</li>
+          <li>存储</li>
+          <li>推流播放鉴权，防盗链</li>
+          <li>服务端水印</li>
+        </ul>
+      </li>
+      <li>数据分析</li>
+    </ul>
+  </li>
+  <li>拓展说明– GPU 和 CPU</li>
+</ul>
+
+<h3 id="应用场景">应用场景</h3>
+
+<h3 id="发展趋势">发展趋势</h3>
+
+<ul>
+  <li>直播退化为更加中性的技术，而不是单一秀场类娱乐直播的代名词。</li>
+  <li>ip 网络直播只是降低直播的开启成本，但是并没有把握内容的质量。所以后续内容的提高是直播变现的一个途径。</li>
+  <li>场景的开拓：走出房间走向世界</li>
+</ul>
+
+<h2 id="实时互动技术">实时互动技术</h2>
+
+<h3 id="行业背景-1">行业背景</h3>
+
+<ul>
+  <li>很多人只在这届的 wwdc 上注意到了苹果对 h.265 的支持，但是没有注意到 safari 浏览器对后续会提供对 webrtc 的支持。</li>
+  <li>目前的互动技术：就是把会议室踹在兜里。</li>
+  <li>未来的互动技术：就像是信息层面的任意门，对！就是多啦A梦的那个任意门。</li>
+  <li>核心理念是：突破时空限制的互动技术</li>
+</ul>
+
+<h3 id="技术特征-1">技术特征</h3>
+
+<ul>
+  <li>架构思想
+    <ul>
+      <li>云端提供一个房间（会议室）的概念。</li>
+      <li>客户端进入同一个房间后可以发布或者订阅音视频流。</li>
+      <li>其实就是在直播的系统上实现一套信令系统，配合比直播（目前的 rtmp 推流直播）更合适传输层协议（UDP）时延下降到 500ms 以内，所以互动起来更加简单。（适当谈一下，传输层协议，应用层协议</li>
+    </ul>
+  </li>
+  <li>功能模块
+    <ul>
+      <li>客户端</li>
+      <li>线路</li>
+      <li>数据处理</li>
+      <li>数据分析</li>
+    </ul>
+  </li>
+  <li>拓展说明–通信协议</li>
+</ul>
+
+<h3 id="应用场景-1">应用场景</h3>
+
+<ul>
+  <li>社交：个人以及生活的展示，即时沟通（比如微信沟通）</li>
+  <li>游戏：在游戏中的互动（比如狼人杀），后面打麻将也可以有音视频</li>
+</ul>
+
+<h3 id="发展趋势-1">发展趋势</h3>
+
+<ul>
+  <li>打破时空，实时互动，交互不限于音视频</li>
+  <li>私密，去中心化的场景</li>
+</ul>
+
+<h2 id="短视频相关技术">短视频相关技术</h2>
+
+<h3 id="行业背景-2">行业背景</h3>
+
+<ul>
+  <li>短视频和核心诉求和写微博类似，只是载体变了。</li>
+  <li>所以处理素材，丰富的编辑和处理功能才能拿给用户丰富的手段来表达自己的思想和乐趣。</li>
+  <li>短视频可以充分利用好用户的碎片时间。</li>
+  <li>短视频的阅读成本比文字低。</li>
+</ul>
+
+<h3 id="技术特征-2">技术特征</h3>
+
+<ul>
+  <li>架构思想</li>
+  <li>功能模块</li>
+  <li>拓展说明–面部识别</li>
+</ul>
+
+<h3 id="应用场景-2">应用场景</h3>
+
+<ul>
+  <li>社交</li>
+</ul>
+
+<h3 id="发展趋势-2">发展趋势</h3>
+
+<ul>
+  <li>视频不再是导演表达思想的利器，也是小学生表达的手段</li>
+</ul>
+
+<h2 id="思考新技术和产品之间的关系">思考新技术和产品之间的关系</h2>
+
+<h3 id="如何看待每一次技术革新带来的机会">如何看待每一次技术革新带来的机会</h3>
+
+<ul>
+  <li>概念起来的时候资本和创业者会一拥而上，但是技术发展和基础设施并不完善。</li>
+  <li>概念不是骗人的，但是收益在成熟之后，比如早期的 O2O 现在的新零售。</li>
+  <li>部署开荒，但是不做烈士</li>
+</ul>
+
+<h3 id="如何处理好技术和产品之间的关系">如何处理好技术和产品之间的关系</h3>
+
+<ul>
+  <li>了解人类各个领域优秀的工作成果并且把它们应用到工作中去。</li>
+  <li>好的产品如菲尔奈特的耐克，资本，资源，时机更多是锦上添花。</li>
+</ul>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/07/11/H265/" data-toggle="tooltip" data-placement="top" title="H.265 相关的知识">
+                        Previous<br>
+                        <span>H.265 相关的知识</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/07/12/react-native/" data-toggle="tooltip" data-placement="top" title="ReactNative 研究：动画效果">
+                        Next<br>
+                        <span>ReactNative 研究：动画效果</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+
+            </div>
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#产品经理" title="产品经理" rel="3">
+                                    产品经理
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#流媒体" title="流媒体" rel="4">
+                                    流媒体
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#直播" title="直播" rel="2">
+                                    直播
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div id="container"></div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+    owner: 'alwaysmavs',
+    repo: 'alwaysmavs.github.io',
+    oauth: {
+        client_id: 'e79b1b139993a61209f6',
+        client_secret: '25d71f8951c42fb6fc271cff9c6de57f6edd8b1a',
+    },
+    })
+    gitment.render('container')
+</script>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/alwaysmavs">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Netless 2019
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <!-- <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://ohuuyffq2.qnssl.com/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '86b26e1ada60e26f19067e1f031503a3';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

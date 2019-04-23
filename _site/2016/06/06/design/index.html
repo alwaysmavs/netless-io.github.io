@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="关于产品、前端和摄影 | 伍双，产品经理，熟悉音视频以及直播领域相关知识 | 这里是伍双的个人博客，一起改善孤独，创造善意的产品。">
+    <meta name="keywords"  content="伍双, beings, 产品经理, 七牛, 七牛直播云, pili, Beings Blog, 博客, 个人网站, 互联网, 前端, 设计, 产品,React,React Native, 全栈，摄影爱好者">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>产品设计师常用网站 - Netless Blog</title>
+
+    <link rel="canonical" href="http://localhost:4000/2016/06/06/design/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Netless</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/portfolio/">Portfolio</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/http://7xragq.com1.z0.glb.clouddn.com/2016-04-06-designer.jpeg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        /*background-image: url('/http://7xragq.com1.z0.glb.clouddn.com/2016-04-06-designer.jpeg')*/
+          background-image: url('http://7xragq.com1.z0.glb.clouddn.com/2016-04-06-designer.jpeg')
+    }
+
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.3);
+    }
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#产品经理" title="产品经理">产品经理</a>
+                        
+                        <a class="tag" href="/tags/#设计" title="设计">设计</a>
+                        
+                    </div>
+                    <h1>产品设计师常用网站</h1>
+                    
+                    
+                    <h2 class="subheading">作为产品设计人员，不懂设计就是创造灾难</h2>
+                    
+                    <span class="meta">Posted by beings on June 6, 2016</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<p>成长是从积累到涌现的过程。好的产品设计师首先要有好的素材积累，才能涌现出动人的作品。下面是我整理出来的常用的网站。希望给大家带来帮助。（打不开请挂代理）</p>
+
+<h3 id="寻找灵感类的">寻找灵感类的</h3>
+<p>优秀的艺术家靠的是借鉴，但伟大的艺术家靠的是‘窃取’。所谓站在巨人的肩膀之上才能累计人类文明。所以对于刚刚入门的产品设计师而言不要羞于借鉴。你需要做到的是提高审美，不要借鉴烂作品。</p>
+
+<p><a href="https://dribbble.com/">https://dribbble.com/</a></p>
+
+<p><a href="https://www.behance.net/">https://www.behance.net/</a></p>
+
+<p><a href="http://www.siiimple.com/">http://www.siiimple.com/</a></p>
+
+<p><a href="http://reeoo.com/">http://reeoo.com/</a></p>
+
+<p><a href="http://www.calltoidea.com/">http://www.calltoidea.com/</a></p>
+
+<p><a href="http://www.ui.cn/">http://www.ui.cn/</a></p>
+
+<p><a href="http://www.zcool.com.cn/">http://www.zcool.com.cn/</a></p>
+
+<p><a href="http://www.uisdc.com/">http://www.uisdc.com/</a></p>
+
+<p><a href="http://designmodo.com/">http://designmodo.com/</a></p>
+
+<p><a href="https://www.google.com/design/spec/material-design/introduction.html">https://www.google.com/design/spec/material-design/introduction.html</a>
+（material design 设计法则）</p>
+
+<h3 id="素材收集">素材收集</h3>
+<p>APP 只是一个容器。真正决定产品调性的是往容器里面填充的内容，而图片就是这些内容的基础之一。所以无论是样图还是海报都需要大量优秀的图片（忽悠甲方也是主要原因），下面这些网站能给你提供大量优秀的图片素材。</p>
+
+<p><a href="https://500px.com/">https://500px.com/</a></p>
+
+<p><a href="https://www.pinterest.com/">https://www.pinterest.com/</a></p>
+
+<p><a href="http://huaban.com/">http://huaban.com/</a></p>
+
+<p><a href="https://unsplash.com/">https://unsplash.com/</a></p>
+
+<h3 id="配色类">配色类</h3>
+<p>配色是一门很深的学问，他能左右你的感情引导你的欲望。下面这这些网站会给你带来诸多配色的灵感，但是真正要深入学习请自己买书自己体会。</p>
+
+<p><a href="http://colorhunt.co/">http://colorhunt.co/</a>	（配色方案集合）</p>
+
+<p><a href="http://www.yiihuu.com/">http://www.yiihuu.com/</a> （配色已经软件教程）</p>
+
+<h3 id="简单代码入门">简单代码入门</h3>
+<p>产品设计师本身不是简单的负责绘图交于开发实现，他们还肩负着产品经理的工作——和开发沟通。所以必要的时候可以学点代码，以方便和开发小伙伴一起快乐的玩耍啦。（本人就是在这几个网站中学习了 html css js vue react 等技术的，讲真代码很有意思）</p>
+
+<p><a href="http://www.imooc.com/">http://www.imooc.com/</a></p>
+
+<p><a href="http://www.w3school.com.cn/">http://www.w3school.com.cn/</a></p>
+
+<p><a href="https://github.com/">https://github.com/</a></p>
+
+<h3 id="新闻资讯">新闻资讯</h3>
+<p>除了很多出色的微信公众号以外，medium 是个很好的信息入口。很多国外优秀前沿的设计理念都可以在 medium 上发掘。而且 medium 本身也是给极其优秀的产品，简直干净到令人窒息。</p>
+
+<p><a href="https://www.designernews.co/">https://www.designernews.co/</a></p>
+
+<p><a href="https://medium.com/">https://medium.com/</a></p>
+
+<h3 id="软件工具">软件工具</h3>
+<p>这里我主要推荐 sketch 的教程，Adobe 一家的软件教程满地都是我不再赘述。还有几款交互软件感觉也不是特别值得一学这里就不推荐了。</p>
+
+<p><a href="http://www.sketchcn.com/">http://www.sketchcn.com/</a> （软件技能）</p>
+
+<h3 id="字体icon">字体icon</h3>
+<p>对于 web 端的产品设计而言，你的 icon 做成 webfont 交付开发会让人觉得你特别专业。</p>
+
+<p><a href="http://www.iconfont.cn/">http://www.iconfont.cn/</a> （icon收集搜索）</p>
+
+<p><a href="http://www.youziku.com/">http://www.youziku.com/</a> （在线字体制作）</p>
+
+<p><a href="http://sketchrepo.com/">http://sketchrepo.com/</a> （sketch 素材网站）</p>
+
+<p><a href="https://design.google.com/icons/">https://design.google.com/icons/</a>  （谷歌的）</p>
+
+<h3 id="web-uikit">Web UIKIT</h3>
+<p>无论设计 APP 还是 web,在动手设计画面之前最重要的是定下设计法则和 UIKIT。一套合理的设计法则可以让你产品具有秩序之美，也能大大见底 UI 的维护成本和开发成本。最后说一句，像成为大师就去享受制定规则的过程吧。</p>
+
+<p><a href="http://www.getuikit.net/">http://www.getuikit.net/</a> （UIKIT可用于H5和web）</p>
+
+<p><a href="http://www.bootcss.com/">http://www.bootcss.com/</a> (bootstrap 中文资料网站)</p>
+
+<p><a href="http://materializecss.com/">http://materializecss.com/</a>（material design uikit）</p>
+
+<h3 id="新产品发布网站">新产品发布网站</h3>
+
+<p>对新鲜事物保持足够的好奇心是一个优秀的产品设计师的立足点。通过你的设计的作品向世界表达你的善意以及对生活的态度。 所以请不要错过任何一个新产品。</p>
+
+<p><a href="http://next.36kr.com/posts/">http://next.36kr.com/posts/</a></p>
+
+<h3 id="png-无损压缩">PNG 无损压缩</h3>
+<p>如果你体会过 IOS 开发的过程你会发现：决定一款软件大小的因素主要是 native 的图片资源；一个是 Pod 进去的库。而代码本身更像是胶水。库我们很难决定用不用（毕竟不开发）但是我们可以让本地的图片压缩到更小。</p>
+
+<p><a href="https://tinypng.com/">https://tinypng.com/</a>（用于轻量化软件）</p>
+
+<h3 id="最后">最后</h3>
+<p>上面提供的一切只是方便大家在成长的过程中完成积累，而真的有一天你要打通任督二脉完成涌现和创新则需要更高维度的思考：如何给人类创造美丽的东西。还有职业只是你谋生的选择，它本身并不决定你学习的路线。</p>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/03/06/feature/" data-toggle="tooltip" data-placement="top" title="产品的节奏和趋势">
+                        Previous<br>
+                        <span>产品的节奏和趋势</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/07/06/read-xiaobo/" data-toggle="tooltip" data-placement="top" title="读王小波">
+                        Next<br>
+                        <span>读王小波</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+
+            </div>
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#产品经理" title="产品经理" rel="3">
+                                    产品经理
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#流媒体" title="流媒体" rel="4">
+                                    流媒体
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#直播" title="直播" rel="2">
+                                    直播
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div id="container"></div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+    owner: 'alwaysmavs',
+    repo: 'alwaysmavs.github.io',
+    oauth: {
+        client_id: 'e79b1b139993a61209f6',
+        client_secret: '25d71f8951c42fb6fc271cff9c6de57f6edd8b1a',
+    },
+    })
+    gitment.render('container')
+</script>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/alwaysmavs">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Netless 2019
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <!-- <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://ohuuyffq2.qnssl.com/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '86b26e1ada60e26f19067e1f031503a3';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="关于产品、前端和摄影 | 伍双，产品经理，熟悉音视频以及直播领域相关知识 | 这里是伍双的个人博客，一起改善孤独，创造善意的产品。">
+    <meta name="keywords"  content="伍双, beings, 产品经理, 七牛, 七牛直播云, pili, Beings Blog, 博客, 个人网站, 互联网, 前端, 设计, 产品,React,React Native, 全栈，摄影爱好者">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>读王小波 - Netless Blog</title>
+
+    <link rel="canonical" href="http://localhost:4000/2016/07/06/read-xiaobo/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Netless</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/portfolio/">Portfolio</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/http://od34da2ro.bkt.clouddn.com/xiaobo.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        /*background-image: url('/http://od34da2ro.bkt.clouddn.com/xiaobo.jpg')*/
+          background-image: url('http://od34da2ro.bkt.clouddn.com/xiaobo.jpg')
+    }
+
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.3);
+    }
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#读书" title="读书">读书</a>
+                        
+                        <a class="tag" href="/tags/#王小波" title="王小波">王小波</a>
+                        
+                    </div>
+                    <h1>读王小波</h1>
+                    
+                    
+                    <h2 class="subheading">原来我们都在虚伪的生活里上演着皇帝的新装</h2>
+                    
+                    <span class="meta">Posted by beings on July 6, 2016</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h3 id="直视欲望">直视欲望</h3>
+
+<p>第一次读王小波的作品是在高三的时候，不得不承认当时我只是拿《黄金时代》当黄书看。除了一边读王二和陈清扬做爱的段子然后一边意淫以外，我第一次真正认识到原来身体的欲望也不是那么不堪的。情欲和自私这些人性上的隐私就像月球的暗面，我们虽然看不到但是他们却真真切切的存在。</p>
+
+<p>大部分读书人都站在道德制高点上加以指责，但是王小波却把这些「不光彩」的东西写下来编成书。当有一天，这些书成为家喻户晓的名著时，他的读者相视一笑：原来我们都在虚伪的生活里上演着皇帝的新装。</p>
+
+<p>重新认识真实的自己之后，我也开始思考人与人之间的关系。人为什么会疲于交际，我猜最大的原因是撒谎太耗费脑力。有些人会把不真实的自己放到社会环境中，所以往往要用一个接一个谎言来构造匹配自己人物设定的世界观。当这种谎言成了生活的一部分，人会变得偏执和无理。当他们给别人的生活制造麻烦的时候也可以做到非常的心安理得，因为谎言不断重复后反而成长为坚定不移的真理。</p>
+
+<p>小波的书让我坦然接受了那个真实且不完美的自己，不用重绘自己的人物设定。因为我深知自己只不过是个学会克制的小人，所以我从来不会站在道德制高点去要求别人如何如何，反而更加理解他人是在哪种本能驱使的下才做了哪些事情。</p>
+
+<h3 id="独立的思考">独立的思考</h3>
+
+<p><img src="http://7xr5u3.com1.z0.glb.clouddn.com/fish.png" alt="扭曲的鱼缸" /></p>
+
+<p>如果说《黄金时代》告诉了我人性的自然状态是怎么样的，那么《沉默的大多数》就告诉了我什么是思想的独立。我们不得不承认我们认知的底层逻辑是被套路了。我们就像一缸愚蠢的金鱼，只能透过玻璃缸的弧面玻璃看到外面那个扭曲的世界。但是王小波就像是一只作死的金鱼，跳出鱼缸看了一眼不扭曲的世界，然后告诉我们：这个世界没有永恒的真理，你要自己去思考善恶是非。</p>
+
+<p>我以前对各种「长者」之间的告诫深以为然。这导致我经常要去思考一些类似：愚蠢的人为什么愚蠢这种问题，然后再结合这个人的身份强行找一个理由去理解愚蠢的合理性。这让我感觉社会关系太过复杂，觉得随时会踩到雷区发生「长者」告诫的问题。</p>
+
+<p>后来我懂事了，我才知道太多的过来人只不过是鱼缸里的小金鱼。他们通过自己有限的视野和口口相传的错误去编制一个认知系统，让所有后面进入社会系统的玩家遵守规则无论规则多么愚蠢。就像罗永浩在鲁豫有约里面说的：「我每做一个决定我父母就觉我一定是疯了，但是事实证明我做的每一个决定去做了之后结果都不算差。」我们不得不认识到一点，有些方面我们的视野和认知已经超了父母辈。也不得不记住一点，有些方面比我们更年轻的家伙也超过了我们。</p>
+
+<p>小波的书能让我感觉到思想的自由。我们不是否认前人对人类社会发展付出，我们只是理性的去思考前人留下的知识。如果只要是前辈留下的就可以不加思考的拜读，那么这种厚古薄今的恶习会让我们一错再错。然后发生《乌合之众》里面所描述的群体弱智行为，一起做着被后人唾弃的恶事却虚伪的告诉自己这是伟大。好了话就说到这里，你们不要去联想到文革了。</p>
+
+<h3 id="关于读书">关于读书</h3>
+
+<p><img src="http://7xr5u3.com1.z0.glb.clouddn.com/read.png" alt="学会读书" /></p>
+
+<p>有阅读习惯的人往往有这种体会：当你认认真真看完一本书的时候其实很难理解作者真正说了什么，他说的这些对自己有什么意义。当有一天你在生活中碰到一件事情，那种似曾相识的感觉会引导你做出正确的决定。直到最后你才发现原来很多年前，我在一本书上看到过这个场景。然后重新翻开这本书，细细体会书中的情节然后一边看一边傻笑。谢谢你，王小波。</p>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/06/06/design/" data-toggle="tooltip" data-placement="top" title="产品设计师常用网站">
+                        Previous<br>
+                        <span>产品设计师常用网站</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/09/08/pm-live/" data-toggle="tooltip" data-placement="top" title="产品经理荒野求生">
+                        Next<br>
+                        <span>产品经理荒野求生</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+
+            </div>
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#产品经理" title="产品经理" rel="3">
+                                    产品经理
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#流媒体" title="流媒体" rel="4">
+                                    流媒体
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#直播" title="直播" rel="2">
+                                    直播
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div id="container"></div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+    owner: 'alwaysmavs',
+    repo: 'alwaysmavs.github.io',
+    oauth: {
+        client_id: 'e79b1b139993a61209f6',
+        client_secret: '25d71f8951c42fb6fc271cff9c6de57f6edd8b1a',
+    },
+    })
+    gitment.render('container')
+</script>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/alwaysmavs">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Netless 2019
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <!-- <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://ohuuyffq2.qnssl.com/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '86b26e1ada60e26f19067e1f031503a3';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

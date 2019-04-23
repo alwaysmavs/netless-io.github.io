@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="关于产品、前端和摄影 | 伍双，产品经理，熟悉音视频以及直播领域相关知识 | 这里是伍双的个人博客，一起改善孤独，创造善意的产品。">
+    <meta name="keywords"  content="伍双, beings, 产品经理, 七牛, 七牛直播云, pili, Beings Blog, 博客, 个人网站, 互联网, 前端, 设计, 产品,React,React Native, 全栈，摄影爱好者">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>ReactNative 研究：动画效果 - Netless Blog</title>
+
+    <link rel="canonical" href="http://localhost:4000/2017/07/12/react-native/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Netless</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/portfolio/">Portfolio</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/https://ohuuyffq2.qnssl.com/react-native-navigation.png" width="0" height="0"> -->
+
+<!-- Post Header -->
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        /*background-image: url('/https://ohuuyffq2.qnssl.com/react-native-navigation.png')*/
+          background-image: url('https://ohuuyffq2.qnssl.com/react-native-navigation.png')
+    }
+
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.3);
+    }
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#React Native" title="React Native">React Native</a>
+                        
+                        <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                        
+                        <a class="tag" href="/tags/#动画效果" title="动画效果">动画效果</a>
+                        
+                    </div>
+                    <h1>ReactNative 研究：动画效果</h1>
+                    
+                    
+                    <h2 class="subheading">ReactNative 动画的 api 使用</h2>
+                    
+                    <span class="meta">Posted by beings on July 12, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h2 id="1-动画的初始值设定">1. 动画的初始值设定</h2>
+
+<p>Animated提供了两种类型的值：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">Animated.Value()</code> 用于单个值。</li>
+  <li><code class="highlighter-rouge">Animated.ValueXY()</code> 用于矢量值。</li>
+</ul>
+
+<p><code class="highlighter-rouge">Animated.Value</code> 可以绑定到样式属性或其他道具，也可以插值。单个<code class="highlighter-rouge">Animated.Value</code> 可以驱动任意数量的属性。</p>
+
+<p>常见用法是，在初始化的时候指定好动画的初始值。然后在执行动画的时候再赋予目标值。</p>
+
+<h2 id="2-创建动画的方法">2. 创建动画的方法</h2>
+
+<p>React Native 创建动画主要是使用 <code class="highlighter-rouge">Animated</code> 的 API，<code class="highlighter-rouge">Animated</code> 提供了以下三个核心的方法：</p>
+
+<ol>
+  <li>
+    <p><code class="highlighter-rouge">Animated.timing()</code> 
+ 推动一个值按照一个过渡曲线而随时间变化。 
+ Config 参数有以下这些属性：</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">duration</code>: 动画的持续时间（毫秒）。默认值为500.</li>
+      <li><code class="highlighter-rouge">easing</code>: Easing function to define curve。默认值为Easing.inOut(Easing.ease)。</li>
+      <li><code class="highlighter-rouge">delay</code>: 开始动画前的延迟时间（毫秒）。默认为0。</li>
+      <li><code class="highlighter-rouge">useNativeDriver</code>: 使用原生动画驱动。默认不启用(false)。</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">Animated.decay()</code>
+ 推动一个值以一个初始的速度和一个衰减系数逐渐变为0。
+ Config 参数有以下这些属性：</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">velocity</code>: 初始速度。必填。</li>
+      <li><code class="highlighter-rouge">deceleration</code>: 衰减系数。默认值0.997。</li>
+      <li><code class="highlighter-rouge">useNativeDriver</code>: 使用原生动画驱动。默认不启用(false)。</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">Animated.spring()</code>
+ 这是一个弹簧动画，主要通过张力，阻尼、初始速度等参数定义动画的形式。
+ Config 参数有以下这些属性：</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">friction</code>: 摩擦力。默认是 7</li>
+      <li><code class="highlighter-rouge">tension</code>: 张力。默认是 40</li>
+      <li><code class="highlighter-rouge">speed</code>: 速度。默认 12</li>
+      <li><code class="highlighter-rouge">bounciness</code>: 反弹力。默认 8</li>
+      <li><code class="highlighter-rouge">useNativeDriver</code>: 使用原生动画驱动。默认不启用(false)。</li>
+    </ul>
+  </li>
+</ol>
+
+<p>样例代码：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">pan</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Animated</span><span class="p">.</span><span class="nx">Value</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="c1">// 初始化动画的值</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="nx">Animated</span><span class="p">.</span><span class="nx">timing</span><span class="p">(</span>                            
+   <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">pan</span><span class="p">,</span> <span class="c1">// 获取初始状态                   </span>
+   <span class="p">{</span>
+       <span class="na">toValue</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 指定目标状态</span>
+   <span class="p">}</span>
+<span class="p">).</span><span class="nx">start</span><span class="p">();</span> <span class="c1">// 开始执行动画</span>
+                                   
+</code></pre>
+</div>
+
+<p><strong>小结：</strong></p>
+
+<ul>
+  <li><code class="highlighter-rouge">Animated.timing()</code> 和 <code class="highlighter-rouge">Animated.spring()</code> 是比较常用的创建动画方法。</li>
+  <li><code class="highlighter-rouge">useNativeDriver</code>: 使用原生动画驱动会提高交互体验。通过使用本地驱动程序，我们在开始动画之前将所有关于动画的内容发送到本机，允许本机代码在UI线程上执行动画，而无需通过每个帧上的桥。一旦动画开始，JS线程可以被阻止而不影响动画。开发者可以通过在动画配置中指定 <code class="highlighter-rouge">useNativeDriver：true</code> 来使用本机驱动程序。</li>
+</ul>
+
+<h2 id="3-创建动画的方法">3. 创建动画的方法</h2>
+
+<p>通过在动画上调用 <code class="highlighter-rouge">start()</code> 来启动动画。 <code class="highlighter-rouge">start()</code> 完成回调，完成动画后将被调用。如果动画正常运行，则完成回调将使用 <code class="highlighter-rouge"><span class="p">{</span><span class="err">finished：true</span><span class="p">}</span></code> 进行调用。如果动画是完成的，因为在它完成之前调用了 <code class="highlighter-rouge">stop()</code>（例如因为它被手势或其他动画所打断），那么它将会收到 <code class="highlighter-rouge"><span class="p">{</span><span class="err">finished：false</span><span class="p">}</span></code>。</p>
+
+<p>样例代码：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">pan</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Animated</span><span class="p">.</span><span class="nx">Value</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="c1">// 初始化动画的值</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="nx">Animated</span><span class="p">.</span><span class="nx">timing</span><span class="p">(</span>                            
+   <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">pan</span><span class="p">,</span> <span class="c1">// 获取初始状态                   </span>
+   <span class="p">{</span>
+       <span class="na">toValue</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 指定目标状态</span>
+   <span class="p">}</span>
+<span class="p">).</span><span class="nx">start</span><span class="p">(</span>
+    <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// 动画完成之后的回调</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">finished</span> <span class="c1">// 获取动画是否完成的回调</span>
+    <span class="p">}</span>
+<span class="p">);</span> <span class="c1">// 开始执行动画</span>
+                                   
+</code></pre>
+</div>
+
+<h2 id="4-组合动画调用动画的方式">4. 组合动画调用动画的方式</h2>
+
+<p>除了以上三个创建动画的方法，对于每个独立的方法都有三种调用该动画的方式：</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">Animated.parallel(arrayOfAnimations)</code></p>
+
+    <p>同时开始一个动画数组里的全部动画。默认情况下，如果有任何一个动画停止了，其余的也会被停止。你可以通过 <code class="highlighter-rouge">stopTogether</code> 选项来改变这个效果。</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">Animated.sequence(arrayOfAnimations)</code></p>
+
+    <p>按顺序执行一个动画数组里的动画，等待一个完成后再执行下一个。如果当前的动画被中止，后面的动画则不会继续执行。</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">Animated.stagger(arrayOfAnimations)</code></p>
+
+    <p>一个动画数组，里面的动画有可能会同时执行（不设置 delay 时间的时候），不过会以指定的延迟来开始。与上述两个动画主要的不同点是 <code class="highlighter-rouge">Animated.Stagger</code> 的第一个参数，delay 会被应用到每一个动画。</p>
+  </li>
+</ul>
+
+<h2 id="5-自定义动画组件">5. 自定义动画组件</h2>
+
+<p>只有动画组件可以执行动画，这些特殊的组件可以将动画值绑定到属性，并进行有针对性的本机更新。如果每个组件都有动画属性，那么在每个框架上的反应渲染和对帐过程的成本会很高。它们还可以在卸载时进行清理，默认情况下它们是安全的。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">createAnimatedComponent()</code> 用此接口创建的组件全部支持动画，但是比较少用。</li>
+</ul>
+
+<p>动画使用上述包装器导出以下可动画组件：</p>
+
+<ul>
+  <li>Animated.Image</li>
+  <li>Animated.ScrollView</li>
+  <li>Animated.Text</li>
+  <li>Animated.View</li>
+</ul>
+
+<h2 id="6-联动多个动画值">6. 联动多个动画值</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">Animated.add(a: Animated, b: Animated)</code> 将两个动画值相加计算，得出一个新的动画值。</li>
+  <li><code class="highlighter-rouge">Animated.divide(a: Animated, b: Animated)</code> 将两个动画值相除计算，得出一个新的动画值。</li>
+  <li><code class="highlighter-rouge">Animated.multiply(a: Animated, b: Animated)</code> 将两个动画值相乘计算，得出一个新的动画值。</li>
+  <li><code class="highlighter-rouge">Animated.modulo(a: Animated, b: Animated)</code> 将两个动画值做取模（取余数）计算，得出一个新的动画值。</li>
+  <li><code class="highlighter-rouge">Animated.diffClamp(a, min, max) </code> 创建一个限制在2个值之间的新动画值。它使用最后一个值之间的差异，所以即使该值远离边界，它将在值再次越来越近时开始变化。 <code class="highlighter-rouge">(value = clamp（value + diff，min，max))</code> 这对于滚动事件是有用的，例如，当向上滚动时显示导航栏，并在向下滚动时隐藏它。</li>
+</ul>
+
+<h2 id="7-插值的原理和用法">7. 插值的原理和用法</h2>
+
+<p><code class="highlighter-rouge">interpolate(config: InterpolationConfigType)</code></p>
+
+<p>在更新属性之前对值进行插值。譬如：把 0-1 <strong>映射</strong>到 0-10。</p>
+
+<p><strong>样例代码</strong></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="nx">constructor</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kr">super</span><span class="p">()</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">spinValue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Animated</span><span class="p">.</span><span class="nx">Value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">// 设定初始值</span>
+<span class="p">}</span>
+
+<span class="nx">componentDidMount</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">spin</span><span class="p">()</span> <span class="c1">// 载入后调用</span>
+<span class="p">}</span>
+
+<span class="nx">spin</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">spinValue</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">// 设置初始值</span>
+  <span class="nx">Animated</span><span class="p">.</span><span class="nx">timing</span><span class="p">(</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">spinValue</span><span class="p">,</span> <span class="c1">// 获取初始值</span>
+    <span class="p">{</span>
+      <span class="na">toValue</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">duration</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
+      <span class="na">easing</span><span class="p">:</span> <span class="nx">Easing</span><span class="p">.</span><span class="nx">linear</span>
+    <span class="p">}</span>
+  <span class="p">).</span><span class="nx">start</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">spin</span><span class="p">())</span> <span class="c1">// 循环执行</span>
+<span class="p">}</span>
+
+<span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">spin</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">spinValue</span><span class="p">.</span><span class="nx">interpolate</span><span class="p">({</span>
+    <span class="na">inputRange</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="na">outputRange</span><span class="p">:</span> <span class="p">[</span><span class="s1">'0deg'</span><span class="p">,</span> <span class="s1">'360deg'</span><span class="p">]</span>
+  <span class="p">})</span> <span class="c1">// 使用插值接口，将 [0,1] 影射到 ['0deg', '360deg']</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">container</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Animated</span><span class="p">.</span><span class="nx">Image</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>  <span class="p">)</span>
+<span class="p">}</span>
+
+</code></pre>
+</div>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/07/11/rich-media/" data-toggle="tooltip" data-placement="top" title="媒体的演变">
+                        Previous<br>
+                        <span>媒体的演变</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/07/20/short-video/" data-toggle="tooltip" data-placement="top" title="七牛短视频服务解决方案">
+                        Next<br>
+                        <span>七牛短视频服务解决方案</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+
+            </div>
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#产品经理" title="产品经理" rel="3">
+                                    产品经理
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#流媒体" title="流媒体" rel="4">
+                                    流媒体
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#直播" title="直播" rel="2">
+                                    直播
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div id="container"></div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+    owner: 'alwaysmavs',
+    repo: 'alwaysmavs.github.io',
+    oauth: {
+        client_id: 'e79b1b139993a61209f6',
+        client_secret: '25d71f8951c42fb6fc271cff9c6de57f6edd8b1a',
+    },
+    })
+    gitment.render('container')
+</script>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/alwaysmavs">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Netless 2019
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <!-- <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://ohuuyffq2.qnssl.com/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '86b26e1ada60e26f19067e1f031503a3';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

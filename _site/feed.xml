@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Netless</title>
+    <description>关于产品、前端和摄影 | 伍双，产品经理，熟悉音视频以及直播领域相关知识 | 这里是伍双的个人博客，一起改善孤独，创造善意的产品。</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 23 Apr 2019 23:11:40 +0800</pubDate>
+    <lastBuildDate>Tue, 23 Apr 2019 23:11:40 +0800</lastBuildDate>
+    <generator>Jekyll v3.5.0</generator>
+    
+      <item>
+        <title>七牛短视频服务解决方案</title>
+        <description>&lt;h2 id=&quot;背景介绍&quot;&gt;背景介绍&lt;/h2&gt;
+
+&lt;h3 id=&quot;短视频的市场背景&quot;&gt;短视频的市场背景&lt;/h3&gt;
+
+&lt;h3 id=&quot;七牛的制作背景&quot;&gt;七牛的制作背景&lt;/h3&gt;
+
+&lt;h2 id=&quot;产品架构&quot;&gt;产品架构&lt;/h2&gt;
+
+&lt;h3 id=&quot;产品架构图详解&quot;&gt;产品架构图详解&lt;/h3&gt;
+
+&lt;h3 id=&quot;客户端详解&quot;&gt;客户端详解&lt;/h3&gt;
+
+&lt;h3 id=&quot;服务端详解&quot;&gt;服务端详解&lt;/h3&gt;
+
+&lt;h2 id=&quot;特色功能介绍&quot;&gt;特色功能介绍&lt;/h2&gt;
+
+&lt;h2 id=&quot;关键参数说明&quot;&gt;关键参数说明&lt;/h2&gt;
+
+&lt;h2 id=&quot;后续的演进方向&quot;&gt;后续的演进方向&lt;/h2&gt;
+
+</description>
+        <pubDate>Thu, 20 Jul 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/07/20/short-video/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/07/20/short-video/</guid>
+        
+        <category>短视频 SDK</category>
+        
+        <category>音视频</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>ReactNative 研究：动画效果</title>
+        <description>&lt;h2 id=&quot;1-动画的初始值设定&quot;&gt;1. 动画的初始值设定&lt;/h2&gt;
+
+&lt;p&gt;Animated提供了两种类型的值：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.Value()&lt;/code&gt; 用于单个值。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.ValueXY()&lt;/code&gt; 用于矢量值。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.Value&lt;/code&gt; 可以绑定到样式属性或其他道具，也可以插值。单个&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.Value&lt;/code&gt; 可以驱动任意数量的属性。&lt;/p&gt;
+
+&lt;p&gt;常见用法是，在初始化的时候指定好动画的初始值。然后在执行动画的时候再赋予目标值。&lt;/p&gt;
+
+&lt;h2 id=&quot;2-创建动画的方法&quot;&gt;2. 创建动画的方法&lt;/h2&gt;
+
+&lt;p&gt;React Native 创建动画主要是使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Animated&lt;/code&gt; 的 API，&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated&lt;/code&gt; 提供了以下三个核心的方法：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.timing()&lt;/code&gt; 
+ 推动一个值按照一个过渡曲线而随时间变化。 
+ Config 参数有以下这些属性：&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;duration&lt;/code&gt;: 动画的持续时间（毫秒）。默认值为500.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;easing&lt;/code&gt;: Easing function to define curve。默认值为Easing.inOut(Easing.ease)。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;delay&lt;/code&gt;: 开始动画前的延迟时间（毫秒）。默认为0。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;useNativeDriver&lt;/code&gt;: 使用原生动画驱动。默认不启用(false)。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.decay()&lt;/code&gt;
+ 推动一个值以一个初始的速度和一个衰减系数逐渐变为0。
+ Config 参数有以下这些属性：&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;velocity&lt;/code&gt;: 初始速度。必填。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;deceleration&lt;/code&gt;: 衰减系数。默认值0.997。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;useNativeDriver&lt;/code&gt;: 使用原生动画驱动。默认不启用(false)。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.spring()&lt;/code&gt;
+ 这是一个弹簧动画，主要通过张力，阻尼、初始速度等参数定义动画的形式。
+ Config 参数有以下这些属性：&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;friction&lt;/code&gt;: 摩擦力。默认是 7&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tension&lt;/code&gt;: 张力。默认是 40&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;speed&lt;/code&gt;: 速度。默认 12&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bounciness&lt;/code&gt;: 反弹力。默认 8&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;useNativeDriver&lt;/code&gt;: 使用原生动画驱动。默认不启用(false)。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;样例代码：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;pan&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 初始化动画的值&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;Animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;                            
+   &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pan&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 获取初始状态                   &lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+       &lt;span class=&quot;na&quot;&gt;toValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 指定目标状态&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 开始执行动画&lt;/span&gt;
+                                   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;小结：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.timing()&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.spring()&lt;/code&gt; 是比较常用的创建动画方法。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;useNativeDriver&lt;/code&gt;: 使用原生动画驱动会提高交互体验。通过使用本地驱动程序，我们在开始动画之前将所有关于动画的内容发送到本机，允许本机代码在UI线程上执行动画，而无需通过每个帧上的桥。一旦动画开始，JS线程可以被阻止而不影响动画。开发者可以通过在动画配置中指定 &lt;code class=&quot;highlighter-rouge&quot;&gt;useNativeDriver：true&lt;/code&gt; 来使用本机驱动程序。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-创建动画的方法&quot;&gt;3. 创建动画的方法&lt;/h2&gt;
+
+&lt;p&gt;通过在动画上调用 &lt;code class=&quot;highlighter-rouge&quot;&gt;start()&lt;/code&gt; 来启动动画。 &lt;code class=&quot;highlighter-rouge&quot;&gt;start()&lt;/code&gt; 完成回调，完成动画后将被调用。如果动画正常运行，则完成回调将使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;finished：true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt; 进行调用。如果动画是完成的，因为在它完成之前调用了 &lt;code class=&quot;highlighter-rouge&quot;&gt;stop()&lt;/code&gt;（例如因为它被手势或其他动画所打断），那么它将会收到 &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;finished：false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;样例代码：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;pan&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 初始化动画的值&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;Animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;                            
+   &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pan&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 获取初始状态                   &lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+       &lt;span class=&quot;na&quot;&gt;toValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 指定目标状态&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 动画完成之后的回调&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;finished&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 获取动画是否完成的回调&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 开始执行动画&lt;/span&gt;
+                                   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;4-组合动画调用动画的方式&quot;&gt;4. 组合动画调用动画的方式&lt;/h2&gt;
+
+&lt;p&gt;除了以上三个创建动画的方法，对于每个独立的方法都有三种调用该动画的方式：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.parallel(arrayOfAnimations)&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;同时开始一个动画数组里的全部动画。默认情况下，如果有任何一个动画停止了，其余的也会被停止。你可以通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;stopTogether&lt;/code&gt; 选项来改变这个效果。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.sequence(arrayOfAnimations)&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;按顺序执行一个动画数组里的动画，等待一个完成后再执行下一个。如果当前的动画被中止，后面的动画则不会继续执行。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.stagger(arrayOfAnimations)&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;一个动画数组，里面的动画有可能会同时执行（不设置 delay 时间的时候），不过会以指定的延迟来开始。与上述两个动画主要的不同点是 &lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.Stagger&lt;/code&gt; 的第一个参数，delay 会被应用到每一个动画。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;5-自定义动画组件&quot;&gt;5. 自定义动画组件&lt;/h2&gt;
+
+&lt;p&gt;只有动画组件可以执行动画，这些特殊的组件可以将动画值绑定到属性，并进行有针对性的本机更新。如果每个组件都有动画属性，那么在每个框架上的反应渲染和对帐过程的成本会很高。它们还可以在卸载时进行清理，默认情况下它们是安全的。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;createAnimatedComponent()&lt;/code&gt; 用此接口创建的组件全部支持动画，但是比较少用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;动画使用上述包装器导出以下可动画组件：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Animated.Image&lt;/li&gt;
+  &lt;li&gt;Animated.ScrollView&lt;/li&gt;
+  &lt;li&gt;Animated.Text&lt;/li&gt;
+  &lt;li&gt;Animated.View&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;6-联动多个动画值&quot;&gt;6. 联动多个动画值&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.add(a: Animated, b: Animated)&lt;/code&gt; 将两个动画值相加计算，得出一个新的动画值。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.divide(a: Animated, b: Animated)&lt;/code&gt; 将两个动画值相除计算，得出一个新的动画值。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.multiply(a: Animated, b: Animated)&lt;/code&gt; 将两个动画值相乘计算，得出一个新的动画值。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.modulo(a: Animated, b: Animated)&lt;/code&gt; 将两个动画值做取模（取余数）计算，得出一个新的动画值。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Animated.diffClamp(a, min, max) &lt;/code&gt; 创建一个限制在2个值之间的新动画值。它使用最后一个值之间的差异，所以即使该值远离边界，它将在值再次越来越近时开始变化。 &lt;code class=&quot;highlighter-rouge&quot;&gt;(value = clamp（value + diff，min，max))&lt;/code&gt; 这对于滚动事件是有用的，例如，当向上滚动时显示导航栏，并在向下滚动时隐藏它。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;7-插值的原理和用法&quot;&gt;7. 插值的原理和用法&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;interpolate(config: InterpolationConfigType)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;在更新属性之前对值进行插值。譬如：把 0-1 &lt;strong&gt;映射&lt;/strong&gt;到 0-10。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;样例代码&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;spinValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 设定初始值&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;spin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 载入后调用&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;spin&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;spinValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 设置初始值&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;Animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;spinValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 获取初始值&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;toValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;duration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;easing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Easing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;linear&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;spin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 循环执行&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;spin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;spinValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;interpolate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;inputRange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;outputRange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'0deg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'360deg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 使用插值接口，将 [0,1] 影射到 ['0deg', '360deg']&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;styles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/View&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 12 Jul 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/07/12/react-native/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/07/12/react-native/</guid>
+        
+        <category>React Native</category>
+        
+        <category>前端</category>
+        
+        <category>动画效果</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>媒体的演变</title>
+        <description>&lt;h2 id=&quot;媒介的演变我从哪里来会到哪里去&quot;&gt;媒介的演变：我从哪里来，会到哪里去&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;富媒体的升级&lt;/li&gt;
+  &lt;li&gt;网络基础设施的提升&lt;/li&gt;
+  &lt;li&gt;终端性能的提升&lt;/li&gt;
+  &lt;li&gt;收入增加和资费下降&lt;/li&gt;
+  &lt;li&gt;用户习惯的培养&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;什么是音视频&quot;&gt;什么是音视频&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;原始的电影制作：动画是指由许多帧静止的画面，以一定的速度（如每秒16张）连续播放时，肉眼因视觉残象产生错觉，而误以为画面活动的作品。&lt;/li&gt;
+  &lt;li&gt;采集、处理、编码、封包、传输&lt;/li&gt;
+  &lt;li&gt;音频：以一定的采样频率采集音频。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;直播是什么&quot;&gt;直播是什么&lt;/h2&gt;
+
+&lt;h3 id=&quot;行业背景&quot;&gt;行业背景&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ip 网络直播的兴起不是什么创新，就是技术和基础建设发展到一定程度的结果：中国网络基础设施的进一步完善，手机性能好到能够推流。&lt;/li&gt;
+  &lt;li&gt;娱乐类直播的核心商业逻辑还是一样：通过直播改变部分人的娱乐方式，然后获取这部分人的注意力，最后把这些注意力转化为购买力。&lt;/li&gt;
+  &lt;li&gt;直播更像是给媒体人的礼物，就像脱口秀节目的兴起，对假唱的厌恶。有些时候人喜欢看到更自然而不完美的节目。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;技术特征&quot;&gt;技术特征&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;架构思想&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;功能模块
+    &lt;ul&gt;
+      &lt;li&gt;客户端
+        &lt;ul&gt;
+          &lt;li&gt;推流端：采集=》处理=》编码=》封包=》推流&lt;/li&gt;
+          &lt;li&gt;播放端：拉取=》解码=》处理=》播放&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;线路
+        &lt;ul&gt;
+          &lt;li&gt;网状去中心化结构&lt;/li&gt;
+          &lt;li&gt;线路稳定&lt;/li&gt;
+          &lt;li&gt;智能调度&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;配套数据处理
+        &lt;ul&gt;
+          &lt;li&gt;鉴黄&lt;/li&gt;
+          &lt;li&gt;实时转码&lt;/li&gt;
+          &lt;li&gt;存储&lt;/li&gt;
+          &lt;li&gt;推流播放鉴权，防盗链&lt;/li&gt;
+          &lt;li&gt;服务端水印&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;数据分析&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;拓展说明– GPU 和 CPU&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;应用场景&quot;&gt;应用场景&lt;/h3&gt;
+
+&lt;h3 id=&quot;发展趋势&quot;&gt;发展趋势&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;直播退化为更加中性的技术，而不是单一秀场类娱乐直播的代名词。&lt;/li&gt;
+  &lt;li&gt;ip 网络直播只是降低直播的开启成本，但是并没有把握内容的质量。所以后续内容的提高是直播变现的一个途径。&lt;/li&gt;
+  &lt;li&gt;场景的开拓：走出房间走向世界&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;实时互动技术&quot;&gt;实时互动技术&lt;/h2&gt;
+
+&lt;h3 id=&quot;行业背景-1&quot;&gt;行业背景&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;很多人只在这届的 wwdc 上注意到了苹果对 h.265 的支持，但是没有注意到 safari 浏览器对后续会提供对 webrtc 的支持。&lt;/li&gt;
+  &lt;li&gt;目前的互动技术：就是把会议室踹在兜里。&lt;/li&gt;
+  &lt;li&gt;未来的互动技术：就像是信息层面的任意门，对！就是多啦A梦的那个任意门。&lt;/li&gt;
+  &lt;li&gt;核心理念是：突破时空限制的互动技术&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;技术特征-1&quot;&gt;技术特征&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;架构思想
+    &lt;ul&gt;
+      &lt;li&gt;云端提供一个房间（会议室）的概念。&lt;/li&gt;
+      &lt;li&gt;客户端进入同一个房间后可以发布或者订阅音视频流。&lt;/li&gt;
+      &lt;li&gt;其实就是在直播的系统上实现一套信令系统，配合比直播（目前的 rtmp 推流直播）更合适传输层协议（UDP）时延下降到 500ms 以内，所以互动起来更加简单。（适当谈一下，传输层协议，应用层协议&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;功能模块
+    &lt;ul&gt;
+      &lt;li&gt;客户端&lt;/li&gt;
+      &lt;li&gt;线路&lt;/li&gt;
+      &lt;li&gt;数据处理&lt;/li&gt;
+      &lt;li&gt;数据分析&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;拓展说明–通信协议&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;应用场景-1&quot;&gt;应用场景&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;社交：个人以及生活的展示，即时沟通（比如微信沟通）&lt;/li&gt;
+  &lt;li&gt;游戏：在游戏中的互动（比如狼人杀），后面打麻将也可以有音视频&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;发展趋势-1&quot;&gt;发展趋势&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;打破时空，实时互动，交互不限于音视频&lt;/li&gt;
+  &lt;li&gt;私密，去中心化的场景&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;短视频相关技术&quot;&gt;短视频相关技术&lt;/h2&gt;
+
+&lt;h3 id=&quot;行业背景-2&quot;&gt;行业背景&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;短视频和核心诉求和写微博类似，只是载体变了。&lt;/li&gt;
+  &lt;li&gt;所以处理素材，丰富的编辑和处理功能才能拿给用户丰富的手段来表达自己的思想和乐趣。&lt;/li&gt;
+  &lt;li&gt;短视频可以充分利用好用户的碎片时间。&lt;/li&gt;
+  &lt;li&gt;短视频的阅读成本比文字低。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;技术特征-2&quot;&gt;技术特征&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;架构思想&lt;/li&gt;
+  &lt;li&gt;功能模块&lt;/li&gt;
+  &lt;li&gt;拓展说明–面部识别&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;应用场景-2&quot;&gt;应用场景&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;社交&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;发展趋势-2&quot;&gt;发展趋势&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;视频不再是导演表达思想的利器，也是小学生表达的手段&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;思考新技术和产品之间的关系&quot;&gt;思考新技术和产品之间的关系&lt;/h2&gt;
+
+&lt;h3 id=&quot;如何看待每一次技术革新带来的机会&quot;&gt;如何看待每一次技术革新带来的机会&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;概念起来的时候资本和创业者会一拥而上，但是技术发展和基础设施并不完善。&lt;/li&gt;
+  &lt;li&gt;概念不是骗人的，但是收益在成熟之后，比如早期的 O2O 现在的新零售。&lt;/li&gt;
+  &lt;li&gt;部署开荒，但是不做烈士&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;如何处理好技术和产品之间的关系&quot;&gt;如何处理好技术和产品之间的关系&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;了解人类各个领域优秀的工作成果并且把它们应用到工作中去。&lt;/li&gt;
+  &lt;li&gt;好的产品如菲尔奈特的耐克，资本，资源，时机更多是锦上添花。&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Tue, 11 Jul 2017 22:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/07/11/rich-media/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/07/11/rich-media/</guid>
+        
+        <category>流媒体</category>
+        
+        <category>行业</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>H.265 相关的知识</title>
+        <description>&lt;p&gt;昨日苹果 WWDC 上反复提起 H.265 相关的内容，让很多非编解码领域的吃瓜群众开始关心起这个技术来。大多数人最关心的是，这项技术会对未来的音视频领域产生怎么样的影响，以及自己相关的业务会不会因此发生变革。&lt;/p&gt;
+
+&lt;p&gt;所以今天对编解码相关的细节不展开赘述，只说其在应用上相关的内容。&lt;/p&gt;
+
+&lt;h2 id=&quot;h265-编码到底是什么&quot;&gt;H.265 编码到底是什么？&lt;/h2&gt;
+
+&lt;p&gt;引用维基百科：高效率视频编码（High Efficiency Video Coding，简称 HEVC）是一种视频压缩标准，被视为是 ITU-T H.264/MPEG-4 AVC 标准的继任者。HEVC 被认为不仅提升视频质量，同时也能达到 H.264/MPEG-4 AVC 两倍之压缩率（等同于同样画面质量下比特率减少到了 50%），可支持 4K 分辨率甚至到超高清电视（UHDTV），最高分辨率可达到 8192×4320（8 K 分辨率）。&lt;/p&gt;
+
+&lt;p&gt;简单的说，H.265 是一种新的视频压缩标准，核心价值是在有限带宽下传输更高质量的网络视频，仅需原先的一半左右带宽即可播放相同质量的视频。这意味着付出同样的带宽成本下，用户可以享受到更高品质的音视频服务。&lt;/p&gt;
+
+&lt;h2 id=&quot;h265-对直播和点播平台有什么意义&quot;&gt;H.265 对直播和点播平台有什么意义？&lt;/h2&gt;
+
+&lt;p&gt;由于 H.265 高压缩率的特点，使得大多数的直播和点播平台都非常关心其发展进度。如果 H.265 能在自家的业务中广泛使用，就可以节省成本、提高用户体验，以及有效地和竞争对手拉开差距占领市场。&lt;/p&gt;
+
+&lt;h2 id=&quot;可即使-h265-拥有着绝对优势现在市面上主流的编码压缩标准还是-h264这是怎么回事&quot;&gt;可即使 H.265 拥有着绝对优势，现在市面上主流的编码压缩标准还是 H.264，这是怎么回事？&lt;/h2&gt;
+
+&lt;p&gt;首先，这是因为 H.265 的编码复杂度更高所以功耗更大，耗时更长。&lt;/p&gt;
+
+&lt;p&gt;其实这个也很好理解，打个比方说：你捏住一块海绵，如果你想压的更小就要花更大的力气捏的更紧。同理，编码压缩的时候你想压缩率更高，那么压缩的算法就要更加复杂，对设备性能的要求也就更高，单位时间内的功耗就更大。&lt;/p&gt;
+
+&lt;p&gt;其次，H.265 的编码复杂度的上升，让其解码也更加复杂，就目前而言，市面大多数播放器都没有专门针对 H.265 进行兼容。&lt;/p&gt;
+
+&lt;p&gt;最后，必须要提到浏览器对 H.265 解码的不支持，多少音视频客户来说就意味着分享获取传播获取新用户的方法就被堵上了。&lt;/p&gt;
+
+&lt;p&gt;这不是一个简单的技术问题，这是一个标准的问题。目前市面上的所有主流的浏览器都不支持 H.265 的解码，换句话说，你的 APP 录制或者直播推流的视频是不能通过分享到朋友圈观看，也不可以在网页上观看。&lt;/p&gt;
+
+&lt;h2 id=&quot;面对这么多问题难道没有解决方案吗&quot;&gt;面对这么多问题，难道没有解决方案吗？&lt;/h2&gt;
+
+&lt;p&gt;上面我们说到，H.265 的编解码非常消耗性能，从硬件上来说就是能让 GPU 做的事情就不要让 CPU 去做，即能硬编的就不要用软编。其实苹果本身支持 H.265 的硬编，而在后续版本的 iOS 11 中，他们会把这项能力开放给所有开发者。这意味着，iOS 平台已经大半只脚迈入了 H.265 的时代。&lt;/p&gt;
+
+&lt;p&gt;但是对于那些面向所有普通用户的直播和点播平台来说，只有 iOS 支持 H.265 是不够的。大家开门做生意，总不能要求每一个客户都按自己意愿选择移动设备。所以 H.265 要进一步普及就一定要支持软编码，也就是用 CPU 进行 H.265 编码，而且要把功耗控制在正常的范围以内。&lt;/p&gt;
+
+&lt;p&gt;目前七牛直播云的 H.265 方案就支持 iOS 和 Android 双平台的软编码，测试结果表示功耗基本和 H.264 软编码近似。&lt;/p&gt;
+
+&lt;p&gt;七牛云还提供服务端转码方案。简单的说，就是七牛云提供 H.265 和 H.264 互转的服务。比如你采用 H.265 录制了一段高清的短视频且上传到了七牛云。这时候服务端会将这段短视频转码出一份 H.264 文件，那么用户在 native 调用播放时候就采用七牛云的 H.265 编码的文件，在浏览器调用的时候就采用 H.264 编码的文件。直播场景下的实时互转，七牛云也马上会推出服务。&lt;/p&gt;
+
+&lt;p&gt;而针对播放器对 H.265 解码问题，七牛云推出一款完全自研的高性能播放器，且对 H.265 做了专门的优化兼容。&lt;/p&gt;
+
+&lt;h2 id=&quot;h265-前景预测&quot;&gt;H.265 前景预测&lt;/h2&gt;
+
+&lt;p&gt;整体上来说，我认为 H.265 的前景十分明朗，被大规模普及只是时间问题。因为它基本拥有各种得天独厚的条件。&lt;/p&gt;
+
+&lt;p&gt;第一是：巨头的支持，苹果在 WWDC 上反复提到 H.265 至少说明了苹果的态度。全世界上亿的苹果设备都会成为 H.265 普及的因素。&lt;/p&gt;
+
+&lt;p&gt;第二是：音视频公司的推动，因为 H.265 的普及直接关系到很多音视频业务公司相关的利润。想象一下，如果是大几个 T 的带宽按 50% 节省，多出来一大笔利润很可能让一些直播点播公司扭亏为盈。&lt;/p&gt;
+
+&lt;p&gt;第三是：由于硬件设备的升级更新速度较快，手机 PC 等硬件的性能进一步提升会导致 H.265 性能要求过高的缺点慢慢被克服。&lt;/p&gt;
+
+&lt;p&gt;第四是：富媒体的升级，如 VR、AR 等次世代媒体的快速发展。而这些媒体对单位带宽内传输的信息量要求比传统媒体更高。&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 11 Jul 2017 22:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/07/11/H265/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/07/11/H265/</guid>
+        
+        <category>流媒体</category>
+        
+        <category>编码</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>手机直播录制屏幕</title>
+        <description>&lt;p&gt;直播经过一年左右的快速发展，衍生出越来越丰富的业务形式，也覆盖越来越广应用领域。手游录屏直播就是现在常见的一种新兴应用场景。&lt;/p&gt;
+
+&lt;p&gt;游戏玩家可以通过这个功能，实时的把自己玩游戏的场景分享展示给其他观众。这个功能给很多游戏制作平台和直播内容平台提供了一种新的产品思路。&lt;/p&gt;
+
+&lt;h2 id=&quot;功能介绍&quot;&gt;功能介绍&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;录屏实现的三个步骤：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;采集：获取屏幕采集的视频数据、麦克风采集的音频数据、游戏内置的音频数据。&lt;/li&gt;
+  &lt;li&gt;处理：转化成可以推流的标准格式，防止推出的流有问题。&lt;/li&gt;
+  &lt;li&gt;编码：处理好硬编支持，节省终端的性能开销。&lt;/li&gt;
+  &lt;li&gt;封包、推流：和普通的直播方式一样处理。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;从以上的录屏步骤来看，录屏直播和普通直播的采集源发生了变化。而真正实现录屏直播功能，则需要我们获取到数据，处理成能更稳定编码、推流的格式，最后才能稳定高质量的推出视频流。&lt;/p&gt;
+
+&lt;h2 id=&quot;七牛录屏-sdk-的使用逻辑&quot;&gt;七牛录屏 SDK 的使用逻辑&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;iOS（ReplayKit）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://od34da2ro.bkt.clouddn.com/screen-image.jpg&quot; alt=&quot;screen-image&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;游戏端自己要实现 ReplayKit 被录制端的协议。&lt;/li&gt;
+  &lt;li&gt;录制平台集成最新版本的七牛直播 SDK 。&lt;/li&gt;
+  &lt;li&gt;录制平台创建 &lt;code class=&quot;highlighter-rouge&quot;&gt;Broadcast Upload Extension&lt;/code&gt; ，让支持 ReplayKit 的游戏可以被录制。&lt;/li&gt;
+  &lt;li&gt;添加推流管理类，拿到 &lt;code class=&quot;highlighter-rouge&quot;&gt;ReplayKit&lt;/code&gt; 数据后推流出去。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Android&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;更新最新版本的七牛直播 SDK 。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;AndroidManifest.xml 注册&lt;/p&gt;
+
+    &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;activity&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.qiniu.pili.droid.streaming.screen.ScreenCaptureRequestActivity&quot;&lt;/span&gt;
+ &lt;span class=&quot;na&quot;&gt;android:theme=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@android:style/Theme.Translucent.NoTitleBar&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;/activity&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;使用我们提供的核心类 &lt;code class=&quot;highlighter-rouge&quot;&gt;ScreenStreamingManager&lt;/code&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;ScreenStreamingManager&lt;/code&gt; 封装了屏幕的录制、音频的采集，编码，封包和推流操作。用户只需要简单的调用相关 API 即可实现录屏推流。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;录屏知识&quot;&gt;录屏知识&lt;/h2&gt;
+
+&lt;h3 id=&quot;replaykit-录屏和-airplay-mirroring-录屏的区别&quot;&gt;ReplayKit 录屏和 Airplay Mirroring 录屏的区别&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;ReplayKit&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;ReplayKit 是苹果 iOS 10 以上版本提供的用于录屏并对外直播的功能。简单而言就是苹果通过这个功能把采集到的屏幕视频信息和音频信息回调给开发者，开发者可以任意处理这些信息。&lt;/p&gt;
+
+&lt;p&gt;但是问题是，ReplayKit 使用上限制较多，首先要求系统必须为 iOS 10 以上；其次，被录屏的 App 必须支持 ReplayKit 功能。这也很容易理解，毕竟录屏是比较敏感的行为。所以必须游戏本身支持，以表示被录制方已经同意录屏。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Airplay Mirroring&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Airplay Mirroring 是苹果用于屏幕投影的功能，投屏的原理就是把设备的屏幕数据和音频数据通过 Airplay Mirroring 协议传输给第三方的支持该协议的显示播放设备。但 Airplay Mirroring 是苹果的私有协议，传输过程中音视频数据都是被苹果加密的，不对第三方开放。因此要想获得这些数据，只能通过破解协议的方式来达成，目前已有部分开发者完成破解，解密了音视频数据，然后经过处理后用于直播录屏。&lt;/p&gt;
+
+&lt;h3 id=&quot;优缺点分析&quot;&gt;优缺点分析&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;| ReplayKit | Airplay Mirroring |
+| --- | --- |
+| 可以在 App Store 上架 | 不可以上架，因为使用了私有 API |
+| 自有游戏支持 ReplayKit 功能才能录屏 | 任何游戏都可以录屏 |  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;安卓的诸多录屏方案&quot;&gt;安卓的诸多录屏方案&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;View.getDrawingCache()&lt;/code&gt; 方法&lt;/p&gt;
+
+    &lt;p&gt;通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;View&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;cache&lt;/code&gt; 内容来获取到 &lt;code class=&quot;highlighter-rouge&quot;&gt;Bitmap&lt;/code&gt; 对象来达到录屏的效果。但是很多手机上面该方式会存在性能问题，另外该方式并不是一个真正意义上的录屏方式，另外部分 &lt;code class=&quot;highlighter-rouge&quot;&gt;View&lt;/code&gt; 组件的内容并不能获取到，比如 &lt;code class=&quot;highlighter-rouge&quot;&gt;webview&lt;/code&gt; 。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;读取 &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/graphics/fb0&lt;/code&gt; 方法&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Android&lt;/code&gt; 基于 &lt;code class=&quot;highlighter-rouge&quot;&gt;Linux&lt;/code&gt;，所以可以通过读取 &lt;code class=&quot;highlighter-rouge&quot;&gt;fb0&lt;/code&gt; 设备节点，即 &lt;code class=&quot;highlighter-rouge&quot;&gt;framebuffer&lt;/code&gt; 中的帧数据来实现屏幕的录制。但是读取这个设备节点需要 &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt; 权限。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;screencap -p xxx.png/screenshot xxx.png&lt;/code&gt; 方法&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;screencap&lt;/code&gt; 是 &lt;code class=&quot;highlighter-rouge&quot;&gt;Android shell&lt;/code&gt; 的命令，可以通过该 &lt;code class=&quot;highlighter-rouge&quot;&gt;shell&lt;/code&gt; 命令来读取到屏幕的帧数据来达到录屏的功能。但该命令仍然需要 &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt; 权限。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MediaProjection + VirtualDisplay (&amp;gt;= 5.0)&lt;/code&gt; 方法&lt;/p&gt;
+
+    &lt;p&gt;在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Android 5.0&lt;/code&gt; 以后，&lt;code class=&quot;highlighter-rouge&quot;&gt;Google&lt;/code&gt; 开放了截屏的接口，可以通过”虚拟屏幕”来实现录屏。该方式是目前 &lt;code class=&quot;highlighter-rouge&quot;&gt;PLDroidMediaStreaming&lt;/code&gt; 采用的方式。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;小结&quot;&gt;小结&lt;/h2&gt;
+
+&lt;p&gt;录屏的本质是多了一种数据源的获取方式，获取到了数据源再按照直推流的标准推出去就是直播的录屏。&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 21 Nov 2016 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/11/21/screen/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/11/21/screen/</guid>
+        
+        <category>流媒体</category>
+        
+        <category>直播</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>弱网优化</title>
+        <description>&lt;p&gt;网络直播行业经过一年多的快速发展，衍生出了各种各样的玩法。最早的网络直播是主播坐在 PC 前，安装好专业的直播设备（如摄像头和麦克风），然后才能开始直播。后来随着手机性能的提升和直播技术的进步，主播只需要有手机和有网络就可以直播。直播发展到现在，单一的室内聊天互动直播已经无法满足观众的需求。主播们开始走向户外，在更多的场景下直播。&lt;/p&gt;
+
+&lt;p&gt;在可以预见的未来，这种直播形式会快速发展。直播的内容会更优质，直播的形式也会从单纯的娱乐转向体验。&lt;/p&gt;
+
+&lt;p&gt;直播想延伸到户外需要克服很多困难，而最主要的困难就是应对不稳定的网络。移动网络下，通常容易遇到网络不稳定，连接被重置，断线重连，一方面频繁重连，建立连接需要开销。另一方面尤其是发生 GPRS / 2G / 3G / 4G 切换时，带宽可能出现瓶颈。当带宽不够，帧率较高/码率较高的内容较难发送出去，这个时候就需要我们在不同网络状况执行不同的策略编码推流，让观众可以看到最优质的直播视频。&lt;/p&gt;
+
+&lt;h2 id=&quot;弱网优化的原理&quot;&gt;弱网优化的原理&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;思路一：根据上行带宽的状况来调整码率、FPS、分辨率&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;弱网优化其实有一个概念性的东西，我们如何评价一个推流方案，它的弱网优化好不好？首先我们要知道三个概念，这个是和解码器相关的，码率（BitRate）、FPS（video frame per second）、分辨率（VideoSize）。&lt;/p&gt;
+
+&lt;p&gt;人们对视频流的感受集中在卡顿、模糊等消极的情况，在 UGC 、 PGC 的直播场景中，这些情况时常发生。直播推流对实时性的要求很高，为了保证实时性，在网络带宽不足或者上行速度不佳的情况下，都需要做出选择。要么选择更好的流程度但牺牲清晰度（模糊），要么选择更好的清晰度但牺牲流畅度（卡顿）。当选定了一个分辨率后，推流过程中就不会对分辨率做变更，但可以对码率和 FPS 做出调节，从而达到上述两种情况的选择。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;效果&lt;/th&gt;
+      &lt;th&gt;码率&lt;/th&gt;
+      &lt;th&gt;FPS&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;流畅度&lt;/td&gt;
+      &lt;td&gt;负相关&lt;/td&gt;
+      &lt;td&gt;正相关&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;清晰度&lt;/td&gt;
+      &lt;td&gt;正相关&lt;/td&gt;
+      &lt;td&gt;负相关&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;通过这个关联，我们就可以容易的知道该如何从技术层面做出调整。在追求更好的流畅度时，我们可以适当降低码率。如果 FPS 已经较高（如 30）时，可以维持 FPS 不变更；如果此时因码率太低而画面无法接受，可以再适当调低 FPS。在追求更清晰的画质时，可以提高码率，FPS 调节至 24 左右人眼大多还会识别为流畅。如果可以接受有轻微卡顿，那么可以将 FPS 设置的更低，比如 20 甚至 15。&lt;/p&gt;
+
+&lt;p&gt;总之，这三者之间一起构建了画面清晰和视频流畅的感觉，但最终参数是否能满意需要不断调整和调优，从而满足产品层面的需求。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;思路二：通过高压缩比的编码技术，比如：H.265&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;当然动态调整编码策略是一种应对方式，而直接提高视频流的压缩比降低直播对网络的要求也是一种策略。目前如果使用 H.265 编码就可以降低 40% 的带宽占用。但是目前的在手机直播上用 H.265 编码还有很多的问题要解决。比如 H.265 编码对移动端来说性能开销过大，相继会带来的问题还有发热过高、掉电过快等问题。&lt;/p&gt;
+
+&lt;h2 id=&quot;七牛在弱网优化上做了什么&quot;&gt;七牛在弱网优化上做了什么&lt;/h2&gt;
+
+&lt;p&gt;很显然弱网优化在目前多样化的直播行业中是一个非常有用功能，所以七牛直播云的 SDK 也在这方面做出了大量的努力，下面可以分享下思路和效果。&lt;/p&gt;
+
+&lt;p&gt;根据大量客户的反馈定制优秀的弱网优化策略
+所谓弱网优化的本质是一种策略。而弱网优化的效果取决于以下两点：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;更精确和细粒度的检测网络的状况，便于推流端 SDK 调整参数。&lt;/li&gt;
+  &lt;li&gt;更丰富的策略和更合理的选择。当 SDK 精确的反馈了网络的状况，我们需要做出正确的判断选择出一种合适的策略来应对。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;要做到以上两点，就需要有大量的用户反馈来验证策略的可靠性和效果。七牛直播云已经通过了很多客户的验证，而且集成七牛直播推流 SDK 时不需要做任何的配置，默认就会打开这个功能。&lt;/p&gt;
+
+&lt;h2 id=&quot;最后&quot;&gt;最后&lt;/h2&gt;
+
+&lt;p&gt;弱网优化在直播领域是一个非常值得深挖的功能。虽然网络质量一直在升级，但是观众的要求也会越来越高。如何根据网络状况动态变化调整到最佳观看体验码流是一门艺术。&lt;/p&gt;
+
+&lt;p&gt;这里还可以展开更前沿的展望，比如我们把动态调整的策略做成一个放在云端的库。而每个终端会反馈弱网优化策略的使用结果，这些海量的结果数据可以通过机器学习建模出更优质的策略，最后把这些策略又回馈到各个终端。&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 20 Nov 2016 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/11/20/net/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/11/20/net/</guid>
+        
+        <category>流媒体</category>
+        
+        <category>直播</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>网路知识集锦--域名</title>
+        <description>&lt;h3 id=&quot;dns&quot;&gt;DNS&lt;/h3&gt;
+&lt;p&gt;DNS 的全称是 Domain Name System，也就是域名系统。
+域名系统为 Internet 上的主机分配域名地址和 IP 地址。由于网络中的计算机都必须有个 IP 地址来识别互相之间才能通通信。但让我们记住一大串的 IP 地址来访问网站显然是不可能的，所以用户使用域名地址。而DNS系统的功能就是自动把域名地址翻译为 IP 地址。域名服务是运行域名系统的 Internet 工具。执行域名服务的服务器称之为DNS服务器，通过 DNS 服务器来应答域名服务的查询。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;DNS 就是域名服务器，他的任务就是确定域名的解析，比如A记录MX记录等等。&lt;/li&gt;
+  &lt;li&gt;任何域名都至少有一个 DNS，一般是2个。但为什么要2个以上呢？因为 DNS 可以轮回处理，这样第一个解析失败可以找第二个。这样只要有一个DNS解析正常，就不会影响域名的正常使用。&lt;/li&gt;
+  &lt;li&gt;如何确定域名的DNS 
+很简单到 &lt;a href=&quot;www.internic.net/whois.html&quot;&gt;www.internic.net/whois.html&lt;/a&gt; 输入你要查询的域名就可以看到了。这个是国际域名管理中心。唯一的权威。只要这里能查到某个域名，就表示域名是生效的。它说你什么时候到期，就是什么时候到期。&lt;/li&gt;
+  &lt;li&gt;有效的 DNS 表示当前正在起作用的 DNS 服务器是谁，比如查询结果是 NS.XINNETDNS.COM NS.XINNET.CN(新网信海)就表示当前域名是由 NS.XINNETDNS.COM NS.XINNET.CN(新网信海)负责解析。其他未显示的DNS的设置，都是无效的。&lt;/li&gt;
+  &lt;li&gt;DNS是可以修改的。修改以后需要24-72小时以后，全世界范围的所有 DNS 服务器才能刷新过来。internic 的信息一般在24小时以后可以看到。另外，修改的过程，并不表示域名会停止解析，只要你在2边都做好了解析。如果生效了就是新的 DNS 在起作用。如果没生效。就是旧的DNS在起作用。要么生效，要么不生效。不存在2个都不起作用的时间。所以域名解析，不会中断。前提是两边都做了解析。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;a记录&quot;&gt;A记录&lt;/h3&gt;
+&lt;p&gt;A (Address) 记录是用来指定主机名（或域名）对应的 IP 地址记录。用户可以将该域名下的网站服务器指向到自己的 web server 上。同时也可以设置您域名的子域名。通俗来说A记录就是服务器的 IP，域名绑定 A 记录就是告诉 DNS，当你输入域名的时候给你引导向设置在 DNS 的 A 记录所对应的服务器。&lt;/p&gt;
+
+&lt;h3 id=&quot;子域名&quot;&gt;子域名&lt;/h3&gt;
+&lt;p&gt;子域名道理等同二级域名，不过比二级域名更加延伸，比如我们继续扩展该域名的主机名，设置主机名为bbs.at，那么就可以建立一个三级域名：bbs.at.abc.com，当然也可以建立四级域名bbs.at.go.abc.com，五级域名bbs.at.go.home.abc.com……，依次类推，可以建立无限级别的域名，我们统称这些域名为顶级域名abc.com的子域名。&lt;/p&gt;
+
+&lt;h3 id=&quot;cname别名指向记录&quot;&gt;CNAME别名指向记录&lt;/h3&gt;
+&lt;p&gt;CNAME (Canonical Name)记录，通常称别名指向。在这里，您可以定义一个主机别名，比如设置 ftp.xxx.com，用来指向一个主机 www.xxx.com，那么以后就可以用 ftp.xxx.com 来代替访问www.xxx.com 了。&lt;/p&gt;
+
+&lt;h3 id=&quot;mx记录&quot;&gt;MX记录&lt;/h3&gt;
+&lt;p&gt;MX 记录也叫做邮件路由记录，用户可以将该域名下的邮件服务器指向到自己的 mail server上，然后即可自行操控所有的邮箱设置。您只需在线填写您服务器的 IP 地址，即可将您域名下的邮件全部转到您自己设定相应的邮件服务器上。简单的说，通过操作 MX 记录，您才可以得到以您域名结尾的邮局。&lt;/p&gt;
+
+&lt;h3 id=&quot;txt-记录&quot;&gt;TXT 记录&lt;/h3&gt;
+&lt;p&gt;TXT 记录，一般指为某个主机名或域名设置的说明，如：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;admin IN TXT “管理员， 电话： 13901234567”&lt;/li&gt;
+  &lt;li&gt;mail IN TXT “邮件主机， 存放在xxx , 管理人：AAA”&lt;/li&gt;
+  &lt;li&gt;Jim IN TXT “contact：abc@mailserver.com”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;也就是您可以设置 TXT，以便使别人联系到您&lt;/p&gt;
+
+&lt;h3 id=&quot;srv-记录&quot;&gt;SRV 记录&lt;/h3&gt;
+&lt;p&gt;SRV 记录：一般是为 Microsoft 的活动目录设置时的应用。DNS 可以独立于活动目录，但是活动目录必须有 DNS 的帮助才能工作。为了活动目录能够正常的工作，DNS 服务器必须支持服务定位（SRV）资源记录，资源记录把服务名字映射为提供服务的服务器名字。活动目录客户和域控制器使用 SRV 资源记录决定域控制器的 IP 地址。&lt;/p&gt;
+
+&lt;h3 id=&quot;ttl值&quot;&gt;TTL值&lt;/h3&gt;
+&lt;p&gt;TTL值全称是“生存时间（Time To Live)”，简单的说它表示 DNS 记录在 DNS 服务器上缓存时间。要理解 TTL 值，请先看下面的一个例子： 
+假设，有这样一个域名 myhost.abc.com（其实，这就是一条DNS记录，通常表示在 abc.com 域中有一台名为 myhost 的主机）对应 IP 地址为 1.1.1.1，它的 TTL 为10分钟。这个域名或称这条记录存储在一台名为 dns.abc.com 的 DNS 服务器上。 
+现在有一个用户在浏览器中键入一下地址（又称URL）： http://myhost.abc.com 这时会发生什么呢？ 
+该访问者指定的 DNS 服务器（或是他的 ISP，互联网服务商，动态分配给他的) 8.8.8.8 就会试图为他解释 myhost.abc.com，当然 8.8.8.8 这台 DNS 服务器由于没有包含 myhost.abc.com 这条信息，因此无法立即解析，但是通过全球 DNS 的递归查询后，最终定位到 dns.abc.com 这台 DNS 服务器，dns.abc.com 这台 DNS 服务器将 myhost.abc.com 对应的 IP 地址 1.1.1.1 告诉 8.8.8.8 这台 DNS 服务器，然有再由 8.8.8.8 告诉用户结果。8.8.8.8 为了以后加快对 myhost.abc.com 这条记录的解析，就将刚才的 1.1.1.1 结果保留一段时间，这就是 TTL 时间，在这段时间内如果用户又有对 myhost.abc.com 这条记录的解析请求，它就直接告诉用户 1.1.1.1，当 TTL 到期则又会重复上面的过程。&lt;/p&gt;
+
+&lt;h3 id=&quot;泛域名与泛解析&quot;&gt;泛域名与泛解析&lt;/h3&gt;
+&lt;p&gt;泛域名是指在一个域名根下，以 *.Domain.com 的形式表示这个域名根所有未建立的子域名。 
+泛解析是把 *.Domain.com 的 A 记录解析到某个 IP 地址上,然后别人通过任意的前缀.domain.com访问都能访问到你解析的站点上
+例： 
+域名根　name.com 只建立了 www.name.com 和 name.com 这两个域名记录， 
+那么 ftp.name.com，mail.name.com，bbs.name.com 等域名记录是不存在的， 
+但为域名根 name.com 建立泛域名记录 *.name.com 后， 
+*.name.com 就涵盖了 ftp.name.com，mail.name.com，bbs.name.com 等所有不存在的子域名记录。 
+您可以定义 *.name.com 指向一个 IP ，那么当访问者无论是输入 ftp.name.com，mail.name.com 或 bbs.name.com 的时候， 
+访问者都将直接访问您定义 *.name.com 的那个 IP。&lt;/p&gt;
+
+&lt;h3 id=&quot;域名绑定&quot;&gt;域名绑定&lt;/h3&gt;
+&lt;p&gt;什么是域名绑定？
+域名绑定是指，域名绑定是指域名和主机(即某个服务器)的空间进行关联绑定,其实就是在虚拟服务器上设置或者WEB服务器上设置，使一个域名被引导向服务器上的某一特定空间（某一个特定站点），访问者访问你的域名的时候就会打开你存放在该空间上的网页，简单来说其实就是把域名解析到服务器IP,然后在服务器上设置该域名有权限访问的过程。一般虚拟主机有控制面板给进行绑定域名，如果没有面板就需要自己在服务器上的IIS里面设置。&lt;/p&gt;
+
+&lt;h3 id=&quot;域名转向&quot;&gt;域名转向&lt;/h3&gt;
+&lt;p&gt;域名转向我们又称为域名（URL）指向或域名转发，当用户地址栏中输入您的域名时，将会自动跳转到您所指定的另一个网络地址（URL）。 
+假设 abc.com 是您注册的域名，则通过 URL 转发服务可以实现当用户访问 http://www.abc.com 时，自动转向访问另外一个 URL，如:我的空间不支持绑定到目录功能，所以为了方便访问者,我就设置：http://bbs.bnxb.com 来访问，这个是设置了通过 URL 转发服务转发到 http://www.bnxb.com/bbs 上面来实现的，这样您就可以轻松实现多个域名指向一个网站或网站子目录；另外，通过 URL 转发服务，可以方便的实现将您的中文域名，设置自动转发到您的英文域名主站点。域名转发的另外一个好处就是可以把长域名压缩，用短域名的转向代替，让你的访客不需输入那么长的域名。&lt;/p&gt;
+
+&lt;h3 id=&quot;iis连接数&quot;&gt;IIS连接数&lt;/h3&gt;
+&lt;p&gt;IIS连接数指并发连接数，什么意思呢？
+要分几种情况：（以100M空间50人在线为例）&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;用户单点下载你的文件，结束后正常断开，这些连接是按照瞬间计算的，就是说你50人的网站瞬间可以接受同时50个点下载&lt;/li&gt;
+  &lt;li&gt;用户打开你的页面，就算停留在该页面，这时候网页已经加载完了没有对服务器再发出任何请求，那么在用户完全打开这个页面的时间内算一个在线，在页面完全打开后 IIS 连接数就释放。&lt;/li&gt;
+  &lt;li&gt;上面B的情况用户继续打开同一个网站的其他页面，那么在线人数按照用户最后一次点击（发出请求）计算，在这个时间内不管用户怎么点击（包括新窗口打开）都还是一人在线。&lt;/li&gt;
+  &lt;li&gt;当你的页面内存在框架（Iframe），那么每多一个框架就要多一倍的在线！因为这相当于用户同一时间向服务器请求了多个页面。&lt;/li&gt;
+  &lt;li&gt;当用户打开页面然后正常关闭浏览器，用户的在线人数也会马上清除。&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Sat, 10 Sep 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/09/10/DNS/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/09/10/DNS/</guid>
+        
+        <category>网路知识</category>
+        
+        <category>域名</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>产品经理荒野求生</title>
+        <description>&lt;p&gt;一辆拥挤的公交车，车下的人都想上车。但是上车以后的人，便希望车门关闭不再继续上人。我刚刚入行的时候也被别人劝退过、贬低过、嘲笑过。我希望我所经历的别人不要再经历这些过程，那种滋味简直和吃了潮湿的硬纸板的一样恶心。&lt;/p&gt;
+
+&lt;p&gt;当一个新人踏入产品经理这个职业的时候，外界对你的提供的帮助是很有限的。因为你还没有完成知识的原始积累，牌桌上的玩家不想带你一起玩。这种时候你需要像野草一样顽强的成长，自己通过各种途径汲取成长需要的养分。&lt;/p&gt;
+
+&lt;h3 id=&quot;抓去信息&quot;&gt;抓去信息&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xragq.com1.z0.glb.clouddn.com/2016-04-09-抓取信息.png&quot; alt=&quot;抓取信息&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;产品经理需要有足够强大的信息抓去能力，这种能力可以让你看清产品的发展趋势，把握产品的开发和运营节奏。&lt;/p&gt;
+
+&lt;p&gt;你需要保持良好的阅读书籍的节奏，充分的了解这个行业内先驱对过去的总结和对未来的展望。这个过程可以让你更加了解你现在所处的互联网大环境是如何一步一步形成的，也可以让你意识到老一辈思想的局限性在哪里，新一代的创业者会具备哪些后发优势。&lt;/p&gt;
+
+&lt;p&gt;同时你也需要了解业内的资讯，了解做死的是怎么个死法活下来的为人类社会创造了那些价值。有的创业公司花了几亿美金给业内所有人上一堂教科书试的失败课程。而很多人却不知道去思考这些昂贵的教训背后是被一个怎么样的错误逻辑主导。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;推荐入门的书籍有：《失控》《必然》《从零到一》《增长黑客》《乌合之众》《动机和人格》《大数据时代》&lt;/li&gt;
+  &lt;li&gt;推荐的资讯入口有（公众号）：36氪 虎嗅 互联网分析沙龙 TechWeb CSDN TechCrunch 等等&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;转化信息&quot;&gt;转化信息&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xragq.com1.z0.glb.clouddn.com/2016-04-09-转化信息.png&quot; alt=&quot;转化信息&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;智慧是一个积累到涌现的过程，当你了解的足够多的时候你自然而然的会产生自己的想法。这时候你需要勇敢的把高维度的产品思维带到你的工作当中。有自己的思考是一件很棒的事情，人类的大脑最伟大的功能肯定不是复制人类已有的东西，而是创造那些未知的东西。所以不要因为你的资历浅就做那个沉默的大多数，只要是你认定对的就去争取支持和资源。&lt;/p&gt;
+
+&lt;p&gt;当然如果你无法说服其他人，也很可能说明的你的想法本身存在着巨大的漏洞，或者公司的现状无法支撑这个想法。这样子你就需要思考如何控制节奏，如何一步步调整和纠错以达到健康的成长。&lt;/p&gt;
+
+&lt;p&gt;这个过程非常建议把你的想法写下来，记录是一件非常有意义的事情。如果孟德尔不把他对豌豆的研究写在那本小册子里，人类又要花多少时间去发现这些成果。而你把对岗位和行业的理解写下来，一样能节省很多新入门的小伙伴非常多的时间。&lt;/p&gt;
+
+&lt;h3 id=&quot;传达信息&quot;&gt;传达信息&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xragq.com1.z0.glb.clouddn.com/2016-04-09-传达信息.jpg&quot; alt=&quot;传达信息&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;经过在行业中一段时间的历练，很多人会积累不少优质的知识。下一步你就需要把这些知识以最广的途径分享出去。如果你的理解有错误，那么会有很多人给你有用的建议。如果你的思想很有趣，那么会有很多人收藏你的文字。如果你为别人创造了很大的价值，那么会有很多人记住你欣赏你感谢你。当我们学习一门计算机语言的时候总会打下第一行「hello world」,因为互联网的本质是分享精神。下面是一些常规的分享渠道。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;知乎、果壳等社区的提问和回答&lt;/li&gt;
+  &lt;li&gt;简书、medium、私人博客的文章&lt;/li&gt;
+  &lt;li&gt;业内同行聚集的微信群里交流&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;技能积累&quot;&gt;技能积累&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xragq.com1.z0.glb.clouddn.com/2016-04-09-积累信息.jpg&quot; alt=&quot;积累信息&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当我入职产品岗位的第一刻起我就告诉自己，不能让技术和设计成为永远的黑盒子。所以我会抽出大量时间去了解自己喜欢的编程技术，会和设计师小伙伴探讨设计的规范和趋势。我甚至觉得职业只是我的一种选择，我只是想汲取那些我热爱的知识，让自己变的更加自信给团队带来价值。&lt;/p&gt;
+
+&lt;p&gt;曾今有一个资历丰富的产品经理和我说：产品经理不应该去花时间做那些不相关的事情。但是我一直没当回事。我觉得要把握一个团队的节奏，最重要的就是清楚的了解自己可调动资源的质量和数量。如果你对设计和技术的了解仅仅在于表面，那你如何调动其团队的超频性能，如何在关键时刻做出正确的取舍。足够了解他们，才能和他们平等的沟通。没有人愿意和一个外行谈很多自己真实的想法。&lt;/p&gt;
+
+&lt;h3 id=&quot;降维攻击&quot;&gt;降维攻击&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xragq.com1.z0.glb.clouddn.com/2016-04-09-降维打击.jpg&quot; alt=&quot;降维打击&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果上面说的都是前戏，那么最后这里就是高潮。维度是一个产品经理的最重要的立足点。如果你不把自己的积累转化为维度上的优势，你凭什么和老板拍桌子、瞪眼睛、要资源、压节奏。&lt;/p&gt;
+
+&lt;p&gt;去年冬天我们做一个租可贴（租房贷款）的促销易拉宝，设计小伙伴就跑过来和我交流思路和调性的问题。我告诉她我们只要讨论三个问题：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;我们的产品使用人群是谁（刚来上海的年轻人为主）&lt;/li&gt;
+  &lt;li&gt;易拉宝的使用场景是在哪（一个陌生的城市、一座模式的公寓、一种对未知的恐惧）&lt;/li&gt;
+  &lt;li&gt;我们给用户创造了什么价值（万家灯火的严冬，帮他们找个家）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;那么一切都明朗了：在一座公寓房内，一个刚到这座城市的年轻人扶着窗沿望着外面的万家灯火。边上的行李箱还没打开，她的脸蛋冻的红扑扑的。但是房间里面却充斥着温暖的感觉。&lt;strong&gt;我们的服务就是为了帮助人找一个温暖的家。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;当我找到一个高维度的立足点的时候，我们才有信息把这个产品做下去一直到它成为一个我们引以为豪的作；才不会被有些资本杂碎所左右自己的意志；才能找到合适的伙伴一起工作。&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 08 Sep 2016 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/09/08/pm-live/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/09/08/pm-live/</guid>
+        
+        <category>产品经理</category>
+        
+        <category>成长</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>读王小波</title>
+        <description>&lt;h3 id=&quot;直视欲望&quot;&gt;直视欲望&lt;/h3&gt;
+
+&lt;p&gt;第一次读王小波的作品是在高三的时候，不得不承认当时我只是拿《黄金时代》当黄书看。除了一边读王二和陈清扬做爱的段子然后一边意淫以外，我第一次真正认识到原来身体的欲望也不是那么不堪的。情欲和自私这些人性上的隐私就像月球的暗面，我们虽然看不到但是他们却真真切切的存在。&lt;/p&gt;
+
+&lt;p&gt;大部分读书人都站在道德制高点上加以指责，但是王小波却把这些「不光彩」的东西写下来编成书。当有一天，这些书成为家喻户晓的名著时，他的读者相视一笑：原来我们都在虚伪的生活里上演着皇帝的新装。&lt;/p&gt;
+
+&lt;p&gt;重新认识真实的自己之后，我也开始思考人与人之间的关系。人为什么会疲于交际，我猜最大的原因是撒谎太耗费脑力。有些人会把不真实的自己放到社会环境中，所以往往要用一个接一个谎言来构造匹配自己人物设定的世界观。当这种谎言成了生活的一部分，人会变得偏执和无理。当他们给别人的生活制造麻烦的时候也可以做到非常的心安理得，因为谎言不断重复后反而成长为坚定不移的真理。&lt;/p&gt;
+
+&lt;p&gt;小波的书让我坦然接受了那个真实且不完美的自己，不用重绘自己的人物设定。因为我深知自己只不过是个学会克制的小人，所以我从来不会站在道德制高点去要求别人如何如何，反而更加理解他人是在哪种本能驱使的下才做了哪些事情。&lt;/p&gt;
+
+&lt;h3 id=&quot;独立的思考&quot;&gt;独立的思考&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xr5u3.com1.z0.glb.clouddn.com/fish.png&quot; alt=&quot;扭曲的鱼缸&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果说《黄金时代》告诉了我人性的自然状态是怎么样的，那么《沉默的大多数》就告诉了我什么是思想的独立。我们不得不承认我们认知的底层逻辑是被套路了。我们就像一缸愚蠢的金鱼，只能透过玻璃缸的弧面玻璃看到外面那个扭曲的世界。但是王小波就像是一只作死的金鱼，跳出鱼缸看了一眼不扭曲的世界，然后告诉我们：这个世界没有永恒的真理，你要自己去思考善恶是非。&lt;/p&gt;
+
+&lt;p&gt;我以前对各种「长者」之间的告诫深以为然。这导致我经常要去思考一些类似：愚蠢的人为什么愚蠢这种问题，然后再结合这个人的身份强行找一个理由去理解愚蠢的合理性。这让我感觉社会关系太过复杂，觉得随时会踩到雷区发生「长者」告诫的问题。&lt;/p&gt;
+
+&lt;p&gt;后来我懂事了，我才知道太多的过来人只不过是鱼缸里的小金鱼。他们通过自己有限的视野和口口相传的错误去编制一个认知系统，让所有后面进入社会系统的玩家遵守规则无论规则多么愚蠢。就像罗永浩在鲁豫有约里面说的：「我每做一个决定我父母就觉我一定是疯了，但是事实证明我做的每一个决定去做了之后结果都不算差。」我们不得不认识到一点，有些方面我们的视野和认知已经超了父母辈。也不得不记住一点，有些方面比我们更年轻的家伙也超过了我们。&lt;/p&gt;
+
+&lt;p&gt;小波的书能让我感觉到思想的自由。我们不是否认前人对人类社会发展付出，我们只是理性的去思考前人留下的知识。如果只要是前辈留下的就可以不加思考的拜读，那么这种厚古薄今的恶习会让我们一错再错。然后发生《乌合之众》里面所描述的群体弱智行为，一起做着被后人唾弃的恶事却虚伪的告诉自己这是伟大。好了话就说到这里，你们不要去联想到文革了。&lt;/p&gt;
+
+&lt;h3 id=&quot;关于读书&quot;&gt;关于读书&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xr5u3.com1.z0.glb.clouddn.com/read.png&quot; alt=&quot;学会读书&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;有阅读习惯的人往往有这种体会：当你认认真真看完一本书的时候其实很难理解作者真正说了什么，他说的这些对自己有什么意义。当有一天你在生活中碰到一件事情，那种似曾相识的感觉会引导你做出正确的决定。直到最后你才发现原来很多年前，我在一本书上看到过这个场景。然后重新翻开这本书，细细体会书中的情节然后一边看一边傻笑。谢谢你，王小波。&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 06 Jul 2016 19:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/07/06/read-xiaobo/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/07/06/read-xiaobo/</guid>
+        
+        <category>读书</category>
+        
+        <category>王小波</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>产品设计师常用网站</title>
+        <description>&lt;p&gt;成长是从积累到涌现的过程。好的产品设计师首先要有好的素材积累，才能涌现出动人的作品。下面是我整理出来的常用的网站。希望给大家带来帮助。（打不开请挂代理）&lt;/p&gt;
+
+&lt;h3 id=&quot;寻找灵感类的&quot;&gt;寻找灵感类的&lt;/h3&gt;
+&lt;p&gt;优秀的艺术家靠的是借鉴，但伟大的艺术家靠的是‘窃取’。所谓站在巨人的肩膀之上才能累计人类文明。所以对于刚刚入门的产品设计师而言不要羞于借鉴。你需要做到的是提高审美，不要借鉴烂作品。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://dribbble.com/&quot;&gt;https://dribbble.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.behance.net/&quot;&gt;https://www.behance.net/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.siiimple.com/&quot;&gt;http://www.siiimple.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://reeoo.com/&quot;&gt;http://reeoo.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.calltoidea.com/&quot;&gt;http://www.calltoidea.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.ui.cn/&quot;&gt;http://www.ui.cn/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.zcool.com.cn/&quot;&gt;http://www.zcool.com.cn/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.uisdc.com/&quot;&gt;http://www.uisdc.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://designmodo.com/&quot;&gt;http://designmodo.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.google.com/design/spec/material-design/introduction.html&quot;&gt;https://www.google.com/design/spec/material-design/introduction.html&lt;/a&gt;
+（material design 设计法则）&lt;/p&gt;
+
+&lt;h3 id=&quot;素材收集&quot;&gt;素材收集&lt;/h3&gt;
+&lt;p&gt;APP 只是一个容器。真正决定产品调性的是往容器里面填充的内容，而图片就是这些内容的基础之一。所以无论是样图还是海报都需要大量优秀的图片（忽悠甲方也是主要原因），下面这些网站能给你提供大量优秀的图片素材。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://500px.com/&quot;&gt;https://500px.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.pinterest.com/&quot;&gt;https://www.pinterest.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://huaban.com/&quot;&gt;http://huaban.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://unsplash.com/&quot;&gt;https://unsplash.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;配色类&quot;&gt;配色类&lt;/h3&gt;
+&lt;p&gt;配色是一门很深的学问，他能左右你的感情引导你的欲望。下面这这些网站会给你带来诸多配色的灵感，但是真正要深入学习请自己买书自己体会。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://colorhunt.co/&quot;&gt;http://colorhunt.co/&lt;/a&gt;	（配色方案集合）&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.yiihuu.com/&quot;&gt;http://www.yiihuu.com/&lt;/a&gt; （配色已经软件教程）&lt;/p&gt;
+
+&lt;h3 id=&quot;简单代码入门&quot;&gt;简单代码入门&lt;/h3&gt;
+&lt;p&gt;产品设计师本身不是简单的负责绘图交于开发实现，他们还肩负着产品经理的工作——和开发沟通。所以必要的时候可以学点代码，以方便和开发小伙伴一起快乐的玩耍啦。（本人就是在这几个网站中学习了 html css js vue react 等技术的，讲真代码很有意思）&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.imooc.com/&quot;&gt;http://www.imooc.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.w3school.com.cn/&quot;&gt;http://www.w3school.com.cn/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/&quot;&gt;https://github.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;新闻资讯&quot;&gt;新闻资讯&lt;/h3&gt;
+&lt;p&gt;除了很多出色的微信公众号以外，medium 是个很好的信息入口。很多国外优秀前沿的设计理念都可以在 medium 上发掘。而且 medium 本身也是给极其优秀的产品，简直干净到令人窒息。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.designernews.co/&quot;&gt;https://www.designernews.co/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://medium.com/&quot;&gt;https://medium.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;软件工具&quot;&gt;软件工具&lt;/h3&gt;
+&lt;p&gt;这里我主要推荐 sketch 的教程，Adobe 一家的软件教程满地都是我不再赘述。还有几款交互软件感觉也不是特别值得一学这里就不推荐了。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.sketchcn.com/&quot;&gt;http://www.sketchcn.com/&lt;/a&gt; （软件技能）&lt;/p&gt;
+
+&lt;h3 id=&quot;字体icon&quot;&gt;字体icon&lt;/h3&gt;
+&lt;p&gt;对于 web 端的产品设计而言，你的 icon 做成 webfont 交付开发会让人觉得你特别专业。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.iconfont.cn/&quot;&gt;http://www.iconfont.cn/&lt;/a&gt; （icon收集搜索）&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.youziku.com/&quot;&gt;http://www.youziku.com/&lt;/a&gt; （在线字体制作）&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://sketchrepo.com/&quot;&gt;http://sketchrepo.com/&lt;/a&gt; （sketch 素材网站）&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://design.google.com/icons/&quot;&gt;https://design.google.com/icons/&lt;/a&gt;  （谷歌的）&lt;/p&gt;
+
+&lt;h3 id=&quot;web-uikit&quot;&gt;Web UIKIT&lt;/h3&gt;
+&lt;p&gt;无论设计 APP 还是 web,在动手设计画面之前最重要的是定下设计法则和 UIKIT。一套合理的设计法则可以让你产品具有秩序之美，也能大大见底 UI 的维护成本和开发成本。最后说一句，像成为大师就去享受制定规则的过程吧。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.getuikit.net/&quot;&gt;http://www.getuikit.net/&lt;/a&gt; （UIKIT可用于H5和web）&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.bootcss.com/&quot;&gt;http://www.bootcss.com/&lt;/a&gt; (bootstrap 中文资料网站)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://materializecss.com/&quot;&gt;http://materializecss.com/&lt;/a&gt;（material design uikit）&lt;/p&gt;
+
+&lt;h3 id=&quot;新产品发布网站&quot;&gt;新产品发布网站&lt;/h3&gt;
+
+&lt;p&gt;对新鲜事物保持足够的好奇心是一个优秀的产品设计师的立足点。通过你的设计的作品向世界表达你的善意以及对生活的态度。 所以请不要错过任何一个新产品。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://next.36kr.com/posts/&quot;&gt;http://next.36kr.com/posts/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;png-无损压缩&quot;&gt;PNG 无损压缩&lt;/h3&gt;
+&lt;p&gt;如果你体会过 IOS 开发的过程你会发现：决定一款软件大小的因素主要是 native 的图片资源；一个是 Pod 进去的库。而代码本身更像是胶水。库我们很难决定用不用（毕竟不开发）但是我们可以让本地的图片压缩到更小。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://tinypng.com/&quot;&gt;https://tinypng.com/&lt;/a&gt;（用于轻量化软件）&lt;/p&gt;
+
+&lt;h3 id=&quot;最后&quot;&gt;最后&lt;/h3&gt;
+&lt;p&gt;上面提供的一切只是方便大家在成长的过程中完成积累，而真的有一天你要打通任督二脉完成涌现和创新则需要更高维度的思考：如何给人类创造美丽的东西。还有职业只是你谋生的选择，它本身并不决定你学习的路线。&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 06 Jun 2016 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/06/06/design/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/06/06/design/</guid>
+        
+        <category>产品经理</category>
+        
+        <category>设计</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

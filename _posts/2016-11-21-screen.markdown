@@ -1,0 +1,120 @@
+---
+layout:     post
+title:      "手机直播录制屏幕"
+subtitle:   "iOS 和 Android 平台下的手机录屏原理"
+date:       2016-11-21 12:00:00
+author:     "beings"
+header-img: "http://od34da2ro.bkt.clouddn.com/screen-game.jpg"
+header-mask: 0.3
+catalog:    true
+tags:
+    - 流媒体
+    - 直播
+---
+
+直播经过一年左右的快速发展，衍生出越来越丰富的业务形式，也覆盖越来越广应用领域。手游录屏直播就是现在常见的一种新兴应用场景。
+
+游戏玩家可以通过这个功能，实时的把自己玩游戏的场景分享展示给其他观众。这个功能给很多游戏制作平台和直播内容平台提供了一种新的产品思路。
+
+## 功能介绍
+
+**录屏实现的三个步骤：**
+
+1. 采集：获取屏幕采集的视频数据、麦克风采集的音频数据、游戏内置的音频数据。
+2. 处理：转化成可以推流的标准格式，防止推出的流有问题。
+3. 编码：处理好硬编支持，节省终端的性能开销。
+4. 封包、推流：和普通的直播方式一样处理。
+
+从以上的录屏步骤来看，录屏直播和普通直播的采集源发生了变化。而真正实现录屏直播功能，则需要我们获取到数据，处理成能更稳定编码、推流的格式，最后才能稳定高质量的推出视频流。
+
+## 七牛录屏 SDK 的使用逻辑
+
+**iOS（ReplayKit）**
+
+![screen-image](http://od34da2ro.bkt.clouddn.com/screen-image.jpg)
+
+
+1. 游戏端自己要实现 ReplayKit 被录制端的协议。
+2. 录制平台集成最新版本的七牛直播 SDK 。
+3. 录制平台创建 `Broadcast Upload Extension` ，让支持 ReplayKit 的游戏可以被录制。
+4. 添加推流管理类，拿到 `ReplayKit` 数据后推流出去。
+
+**Android**
+
+1. 更新最新版本的七牛直播 SDK 。
+2. AndroidManifest.xml 注册 
+
+    ```xml
+    <activity android:name="com.qiniu.pili.droid.streaming.screen.ScreenCaptureRequestActivity"
+    android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+    </activity>
+    ```
+
+3. 使用我们提供的核心类 `ScreenStreamingManager`
+`ScreenStreamingManager` 封装了屏幕的录制、音频的采集，编码，封包和推流操作。用户只需要简单的调用相关 API 即可实现录屏推流。
+
+## 录屏知识
+
+### ReplayKit 录屏和 Airplay Mirroring 录屏的区别
+
+
+**ReplayKit**
+
+ReplayKit 是苹果 iOS 10 以上版本提供的用于录屏并对外直播的功能。简单而言就是苹果通过这个功能把采集到的屏幕视频信息和音频信息回调给开发者，开发者可以任意处理这些信息。
+
+但是问题是，ReplayKit 使用上限制较多，首先要求系统必须为 iOS 10 以上；其次，被录屏的 App 必须支持 ReplayKit 功能。这也很容易理解，毕竟录屏是比较敏感的行为。所以必须游戏本身支持，以表示被录制方已经同意录屏。
+
+**Airplay Mirroring**
+
+Airplay Mirroring 是苹果用于屏幕投影的功能，投屏的原理就是把设备的屏幕数据和音频数据通过 Airplay Mirroring 协议传输给第三方的支持该协议的显示播放设备。但 Airplay Mirroring 是苹果的私有协议，传输过程中音视频数据都是被苹果加密的，不对第三方开放。因此要想获得这些数据，只能通过破解协议的方式来达成，目前已有部分开发者完成破解，解密了音视频数据，然后经过处理后用于直播录屏。
+
+### 优缺点分析
+
+    | ReplayKit | Airplay Mirroring |
+    | --- | --- |
+    | 可以在 App Store 上架 | 不可以上架，因为使用了私有 API |
+    | 自有游戏支持 ReplayKit 功能才能录屏 | 任何游戏都可以录屏 |  
+
+
+## 安卓的诸多录屏方案
+
+- `View.getDrawingCache()` 方法
+
+    通过 `View` 的 `cache` 内容来获取到 `Bitmap` 对象来达到录屏的效果。但是很多手机上面该方式会存在性能问题，另外该方式并不是一个真正意义上的录屏方式，另外部分 `View` 组件的内容并不能获取到，比如 `webview` 。
+
+- 读取 `/dev/graphics/fb0` 方法
+
+    `Android` 基于 `Linux`，所以可以通过读取 `fb0` 设备节点，即 `framebuffer` 中的帧数据来实现屏幕的录制。但是读取这个设备节点需要 `root` 权限。
+
+- `screencap -p xxx.png/screenshot xxx.png` 方法
+
+    `screencap` 是 `Android shell` 的命令，可以通过该 `shell` 命令来读取到屏幕的帧数据来达到录屏的功能。但该命令仍然需要 `root` 权限。
+
+- `MediaProjection + VirtualDisplay (>= 5.0)` 方法
+
+    在 `Android 5.0` 以后，`Google` 开放了截屏的接口，可以通过"虚拟屏幕"来实现录屏。该方式是目前 `PLDroidMediaStreaming` 采用的方式。
+
+## 小结
+
+录屏的本质是多了一种数据源的获取方式，获取到了数据源再按照直推流的标准推出去就是直播的录屏。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
